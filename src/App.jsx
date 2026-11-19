@@ -22,12 +22,12 @@ import {
 } from './config/version';
 
 const TEAM_STYLES = {
-  townsfolk: { label: 'Townsfolk', border: 'border-blue-500', bg: 'bg-blue-950/60', text: 'text-blue-300', badge: 'bg-blue-600' },
-  outsider: { label: 'Outsiders', border: 'border-cyan-500', bg: 'bg-cyan-950/60', text: 'text-cyan-300', badge: 'bg-cyan-600' },
-  minion: { label: 'Minions', border: 'border-orange-500', bg: 'bg-orange-950/60', text: 'text-orange-300', badge: 'bg-orange-600' },
-  demon: { label: 'Demons', border: 'border-red-500', bg: 'bg-red-950/60', text: 'text-red-300', badge: 'bg-red-600' },
-  traveller: { label: 'Travellers', border: 'border-purple-500', bg: 'bg-purple-950/60', text: 'text-purple-300', badge: 'bg-purple-600' },
-  unknown: { label: 'Custom / Other', border: 'border-zinc-500', bg: 'bg-zinc-900', text: 'text-zinc-300', badge: 'bg-zinc-600' },
+  townsfolk: { label: 'Stadsbor', border: 'border-blue-500', bg: 'bg-blue-950/60', text: 'text-blue-300', badge: 'bg-blue-600' },
+  outsider: { label: 'Utbölingar', border: 'border-cyan-500', bg: 'bg-cyan-950/60', text: 'text-cyan-300', badge: 'bg-cyan-600' },
+  minion: { label: 'Hantlangare', border: 'border-orange-500', bg: 'bg-orange-950/60', text: 'text-orange-300', badge: 'bg-orange-600' },
+  demon: { label: 'Demoner', border: 'border-red-500', bg: 'bg-red-950/60', text: 'text-red-300', badge: 'bg-red-600' },
+  traveller: { label: 'Resenärer', border: 'border-purple-500', bg: 'bg-purple-950/60', text: 'text-purple-300', badge: 'bg-purple-600' },
+  unknown: { label: 'Egna / övriga', border: 'border-zinc-500', bg: 'bg-zinc-900', text: 'text-zinc-300', badge: 'bg-zinc-600' },
 };
 
 const getRoleInfo = (id) => resolveRoleInfo(id);
@@ -498,7 +498,7 @@ export default function App() {
   });
 
   const handleImportGameState = (json) => {
-    if (!json || typeof json !== 'object') throw new Error('Invalid game state');
+    if (!json || typeof json !== 'object') throw new Error('Ogiltigt spelläge');
     if (json.scriptName) setScriptName(json.scriptName);
     if (Array.isArray(json.scriptRoles)) setScriptRoles(json.scriptRoles);
     if (typeof json.playerCount === 'number') setPlayerCount(json.playerCount);
@@ -571,14 +571,14 @@ export default function App() {
                       v{APP_VERSION}
                     </span>
                   </h3>
-                  <p className="text-xs text-zinc-400">Offline Storyteller Assistant</p>
+                  <p className="text-xs text-zinc-400">Berättarassistent offline</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setShowVersionModal(false)}
                 className="text-zinc-400 hover:text-zinc-100 text-lg p-1"
-                aria-label="Close modal"
+                aria-label="Stäng"
               >
                 ✕
               </button>
@@ -601,15 +601,15 @@ export default function App() {
                   </a>
                 </div>
                 <div>
-                  <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">PWA Offline</span>
+                  <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">PWA offline</span>
                   <span className="text-emerald-400 font-bold text-xs flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Cached / Ready
+                    Sparad / redo
                   </span>
                 </div>
                 {BUILD_TIME && (
                   <div className="col-span-2 pt-2 border-t border-zinc-800/80">
-                    <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">Built At</span>
+                    <span className="text-[10px] text-zinc-400 uppercase tracking-wider block">Byggd</span>
                     <span className="text-zinc-300 text-[11px] font-sans">
                       {new Date(BUILD_TIME).toLocaleString()}
                     </span>
@@ -621,7 +621,7 @@ export default function App() {
               <div className="space-y-1.5">
                 <span className="text-[11px] font-bold text-zinc-300 uppercase tracking-wider flex items-center gap-1.5">
                   <span>✨</span>
-                  <span>Release Highlights (v{APP_VERSION}):</span>
+                  <span>Nyheter (v{APP_VERSION}):</span>
                 </span>
                 <ul className="space-y-1.5 bg-zinc-950/60 p-3 rounded-xl border border-zinc-800 text-zinc-300">
                   {RELEASE_HIGHLIGHTS.map((item, idx) => (
@@ -635,7 +635,7 @@ export default function App() {
 
               {/* Repositories */}
               <div className="pt-2 border-t border-zinc-800 flex items-center justify-between text-zinc-400">
-                <span>Repositories:</span>
+                <span>Repon:</span>
                 <div className="flex items-center gap-3">
                   <a
                     href={GITHUB_REPO}
@@ -667,7 +667,7 @@ export default function App() {
                 onClick={() => setShowVersionModal(false)}
                 className="w-full py-2 bg-zinc-800 hover:bg-zinc-750 text-zinc-200 font-bold rounded-xl transition-colors text-xs"
               >
-                Close
+                Stäng
               </button>
             </div>
           </div>
@@ -692,21 +692,21 @@ export default function App() {
                   e.stopPropagation();
                   setShowVersionModal(true);
                 }}
-                title={`Version ${APP_VERSION} (${GIT_HASH}) - Click for build info`}
+                title={`Version ${APP_VERSION} (${GIT_HASH}) – klicka för bygginfo`}
                 className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-zinc-800/90 text-amber-400/90 border border-zinc-700 hover:border-amber-500/60 hover:text-amber-300 transition-colors cursor-pointer"
               >
                 v{APP_VERSION}
               </button>
             </div>
             <div className="flex items-center gap-1.5 mt-0.5">
-              <span className="text-[11px] text-zinc-400">Script:</span>
+              <span className="text-[11px] text-zinc-400">Skript:</span>
               <button
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
                   setShowScriptModal(true);
                 }}
-                title="Change edition or load custom script"
+                title="Byt utgåva eller ladda eget skript"
                 className="inline-flex items-center gap-1 bg-zinc-800 hover:bg-zinc-750 text-zinc-200 text-[11px] font-bold px-2 py-0.5 rounded border border-zinc-700 hover:border-amber-500/50 transition-colors"
               >
                 <span>{scriptName}</span>
@@ -719,11 +719,11 @@ export default function App() {
         <div className="flex items-center gap-1.5 sm:gap-2">
           <button
             onClick={() => setShowBackupModal(true)}
-            title="Backup, export, import or reset session"
+            title="Säkerhetskopiera, exportera, importera eller återställ"
             className="text-xs text-zinc-300 hover:text-zinc-100 border border-zinc-700 hover:border-zinc-600 bg-zinc-800 hover:bg-zinc-750 px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shadow-sm active:scale-95"
           >
             <span>💾</span>
-            <span className="hidden sm:inline">Backup & State</span>
+            <span className="hidden sm:inline">Säkerhetskopia</span>
           </button>
         </div>
       </header>

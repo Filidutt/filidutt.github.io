@@ -60,27 +60,27 @@ export default function RoleBalanceTracker({
   // Live balance discrepancies (diagnostics)
   const discrepancies = [];
   if (selTownsfolk.length < targetTownsfolk) {
-    discrepancies.push({ label: `+${targetTownsfolk - selTownsfolk.length} Townsfolk`, type: 'need', color: 'bg-blue-950/80 text-blue-300 border-blue-500/50' });
+    discrepancies.push({ label: `+${targetTownsfolk - selTownsfolk.length} stadsbo`, type: 'need', color: 'bg-blue-950/80 text-blue-300 border-blue-500/50' });
   } else if (selTownsfolk.length > targetTownsfolk) {
-    discrepancies.push({ label: `-${selTownsfolk.length - targetTownsfolk} Townsfolk`, type: 'excess', color: 'bg-rose-950/80 text-rose-300 border-rose-500/50' });
+    discrepancies.push({ label: `-${selTownsfolk.length - targetTownsfolk} stadsbo`, type: 'excess', color: 'bg-rose-950/80 text-rose-300 border-rose-500/50' });
   }
 
   if (selOutsiders.length < targetOutsiders) {
-    discrepancies.push({ label: `+${targetOutsiders - selOutsiders.length} Outsider`, type: 'need', color: 'bg-cyan-950/80 text-cyan-300 border-cyan-500/50' });
+    discrepancies.push({ label: `+${targetOutsiders - selOutsiders.length} utböling`, type: 'need', color: 'bg-cyan-950/80 text-cyan-300 border-cyan-500/50' });
   } else if (selOutsiders.length > targetOutsiders) {
-    discrepancies.push({ label: `-${selOutsiders.length - targetOutsiders} Outsider`, type: 'excess', color: 'bg-rose-950/80 text-rose-300 border-rose-500/50' });
+    discrepancies.push({ label: `-${selOutsiders.length - targetOutsiders} utböling`, type: 'excess', color: 'bg-rose-950/80 text-rose-300 border-rose-500/50' });
   }
 
   if (selMinions.length < targetMinions) {
-    discrepancies.push({ label: `+${targetMinions - selMinions.length} Minion`, type: 'need', color: 'bg-orange-950/80 text-orange-300 border-orange-500/50' });
+    discrepancies.push({ label: `+${targetMinions - selMinions.length} hantlangare`, type: 'need', color: 'bg-orange-950/80 text-orange-300 border-orange-500/50' });
   } else if (selMinions.length > targetMinions) {
-    discrepancies.push({ label: `-${selMinions.length - targetMinions} Minion`, type: 'excess', color: 'bg-rose-950/80 text-rose-300 border-rose-500/50' });
+    discrepancies.push({ label: `-${selMinions.length - targetMinions} hantlangare`, type: 'excess', color: 'bg-rose-950/80 text-rose-300 border-rose-500/50' });
   }
 
   if (selDemons.length < targetDemons) {
-    discrepancies.push({ label: `+${targetDemons - selDemons.length} Demon`, type: 'need', color: 'bg-red-950/80 text-red-300 border-red-500/50' });
+    discrepancies.push({ label: `+${targetDemons - selDemons.length} demon`, type: 'need', color: 'bg-red-950/80 text-red-300 border-red-500/50' });
   } else if (selDemons.length > targetDemons) {
-    discrepancies.push({ label: `-${selDemons.length - targetDemons} Demon`, type: 'excess', color: 'bg-rose-950/80 text-rose-300 border-rose-500/50' });
+    discrepancies.push({ label: `-${selDemons.length - targetDemons} demon`, type: 'excess', color: 'bg-rose-950/80 text-rose-300 border-rose-500/50' });
   }
 
   // 1-Click Auto-Fill Balanced Bag
@@ -133,7 +133,7 @@ export default function RoleBalanceTracker({
             key={role.id}
             type="button"
             onClick={() => onToggleRole(role.id)}
-            title={`Remove ${role.name} from bag`}
+            title={`Ta bort ${role.name} från påsen`}
             className={`group inline-flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-semibold shadow-sm transition-transform active:scale-95 border ${colors.badgeBg} ${colors.border} text-white`}
           >
             <span className="text-sm shrink-0">{role.icon}</span>
@@ -147,7 +147,7 @@ export default function RoleBalanceTracker({
             key={`empty-${i}`}
             type="button"
             onClick={() => onSelectTeam && onSelectTeam(teamKey)}
-            title={`Tap to jump to ${label} selection`}
+            title={`Tryck för att gå till ${label}`}
             className={`inline-flex items-center justify-center px-2 py-1 rounded-lg text-[11px] border border-dashed ${colors.emptyBorder} ${colors.emptyBg} ${colors.emptyText} hover:brightness-125 cursor-pointer active:scale-95 transition-all`}
           >
             <span>+ {label}</span>
@@ -164,14 +164,14 @@ export default function RoleBalanceTracker({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 border-b border-zinc-800/80">
         <div>
           <div className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-1.5">
-            <span>Official Balance Breakdown:</span>
+            <span>Officiell fördelning:</span>
           </div>
           <div className="text-xs font-semibold text-zinc-200 mt-0.5">
-            <span className="text-blue-400 font-bold">{targetGood} Good</span>
-            <span className="text-zinc-500 mx-1.5">vs</span>
-            <span className="text-red-400 font-bold">{targetEvil} Evil</span>
+            <span className="text-blue-400 font-bold">{targetGood} goda</span>
+            <span className="text-zinc-500 mx-1.5">mot</span>
+            <span className="text-red-400 font-bold">{targetEvil} onda</span>
             <span className="text-zinc-400 text-[11px] ml-1.5">
-              ({targetTownsfolk} TF + {targetOutsiders} Out / {targetMinions} Min + {targetDemons} Dem)
+              ({targetTownsfolk} Sb + {targetOutsiders} Utb / {targetMinions} Hant + {targetDemons} Dem)
             </span>
           </div>
         </div>
@@ -181,15 +181,15 @@ export default function RoleBalanceTracker({
           {isBalanced ? (
             <span className="text-xs font-bold px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 shadow-md flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span>BALANCED</span>
+              <span>BALANSERAD</span>
             </span>
           ) : totalSelected === numericCount ? (
             <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-zinc-800 border border-zinc-700 text-zinc-200">
-              {totalSelected}/{numericCount} (Custom)
+              {totalSelected}/{numericCount} (egen)
             </span>
           ) : totalSelected > numericCount ? (
             <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-rose-950/60 border border-rose-800/60 text-rose-300">
-              {totalSelected}/{numericCount} (+{totalSelected - numericCount} over)
+              {totalSelected}/{numericCount} (+{totalSelected - numericCount} för många)
             </span>
           ) : (
             <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-zinc-800 border border-zinc-700 text-zinc-300">
@@ -204,16 +204,16 @@ export default function RoleBalanceTracker({
         <div className="bg-zinc-950/70 border border-zinc-800 rounded-xl p-2.5 space-y-1.5 text-xs">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
-              {totalSelected === 0 ? 'How to balance bag:' : 'Adjust bag to balance:'}
+              {totalSelected === 0 ? 'Så balanserar du påsen:' : 'Justera påsen:'}
             </span>
             {scriptRoles?.length > 0 && onSetBagRoles && (
               <button
                 type="button"
                 onClick={handleAutoFillBag}
                 className="text-[11px] font-medium text-zinc-400 hover:text-zinc-200 hover:underline flex items-center gap-1"
-                title="Automatically select recommended roles for this player count"
+                title="Välj automatiskt rekommenderade roller för det här antalet spelare"
               >
-                <span>Auto-fill bag</span>
+                <span>Fyll påsen automatiskt</span>
               </button>
             )}
           </div>
@@ -230,7 +230,7 @@ export default function RoleBalanceTracker({
               ))
             ) : (
               <span className="text-zinc-500 text-[11px]">
-                Select roles below to fill your bag slots.
+                Välj roller nedan för att fylla påsen.
               </span>
             )}
           </div>
@@ -240,7 +240,7 @@ export default function RoleBalanceTracker({
       {/* Quick Action Bar (Auto-fill / Clear) */}
       <div className="flex items-center justify-between text-xs pt-0.5">
         <span className="text-zinc-500 text-[11px]">
-          Tap roles below to add or remove from bag.
+          Tryck på roller nedan för att lägga till eller ta bort dem från påsen.
         </span>
         <div className="flex items-center gap-2">
           {scriptRoles?.length > 0 && onSetBagRoles && (
@@ -249,7 +249,7 @@ export default function RoleBalanceTracker({
               onClick={handleAutoFillBag}
               className="px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-750 text-zinc-200 font-medium border border-zinc-700 text-[11px] transition-colors flex items-center gap-1 shadow-sm"
             >
-              <span>Auto-Fill Bag</span>
+              <span>Fyll påsen automatiskt</span>
             </button>
           )}
           {bagRoles.length > 0 && onSetBagRoles && (
@@ -257,9 +257,9 @@ export default function RoleBalanceTracker({
               type="button"
               onClick={handleClearBag}
               className="text-[11px] text-zinc-500 hover:text-rose-400 px-1.5 py-1 transition-colors"
-              title="Clear all roles from bag"
+              title="Ta bort alla roller från påsen"
             >
-              Clear
+              Rensa
             </button>
           )}
         </div>
@@ -271,12 +271,12 @@ export default function RoleBalanceTracker({
           <div className="flex items-center gap-2">
             <span className="text-base">🎩</span>
             <div>
-              <span className="font-bold text-amber-300">Baron Setup Modifier Active:</span>{' '}
-              <span className="text-zinc-200">Replaced 2 Townsfolk with <b>+2 Outsiders</b></span>
+              <span className="font-bold text-amber-300">Baronens uppställning gäller:</span>{' '}
+              <span className="text-zinc-200">2 stadsbor har bytts mot <b>+2 utbölingar</b></span>
             </div>
           </div>
           <span className="text-[10px] font-black bg-amber-500 text-zinc-950 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0 ml-2">
-            +2 OUT
+            +2 UTB
           </span>
         </div>
       )}
@@ -295,19 +295,19 @@ export default function RoleBalanceTracker({
               <span className="text-lg w-8 h-8 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0">🍺</span>
               <div>
                 <div className="font-bold text-zinc-200 text-xs flex items-center gap-1.5 flex-wrap">
-                  <span>Drunk Townsfolk Disguise:</span>
+                  <span>Fyllots förklädnad (stadsbo):</span>
                   {drunkDisguise ? (
                     <span className="text-zinc-100 bg-zinc-800 px-2 py-0.5 rounded-lg border border-zinc-700 font-medium">
                       {getRoleInfo(drunkDisguise)?.name || drunkDisguise}
                     </span>
                   ) : (
                     <span className="text-rose-300 font-medium bg-rose-950/60 px-2 py-0.5 rounded-lg border border-rose-800/60">
-                      Disguise needed for bag
+                      Förklädnad behövs till påsen
                     </span>
                   )}
                 </div>
                 <p className="text-[11px] text-zinc-400 mt-0.5">
-                  The Drunk thinks they are this Townsfolk. This token physically goes into the bag.
+                  Fyllot tror att det är den här stadsbon. Den här poletten läggs fysiskt i påsen.
                 </p>
               </div>
             </div>
@@ -317,7 +317,7 @@ export default function RoleBalanceTracker({
                 onChange={(e) => onSetDrunkDisguise(e.target.value)}
                 className="bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-1.5 text-xs text-zinc-100 font-medium focus:outline-none focus:border-zinc-500 shrink-0"
               >
-                <option value="">-- Select Townsfolk --</option>
+                <option value="">-- Välj stadsbo --</option>
                 {availableTownsfolkForDrunk.map((tf) => (
                   <option key={tf.id} value={tf.id}>
                     {tf.name}
@@ -335,7 +335,7 @@ export default function RoleBalanceTracker({
         <div className="bg-blue-950/10 border border-blue-900/30 rounded-xl p-3 space-y-2.5">
           <div className="flex items-center justify-between text-xs">
             <span className="font-bold text-blue-300 uppercase tracking-wider text-[11px]">
-              GOOD TEAM
+              DE GODA
             </span>
             <span
               className={`text-[11px] font-bold px-2 py-0.5 rounded-md ${
@@ -351,7 +351,7 @@ export default function RoleBalanceTracker({
           {/* Townsfolk Slots */}
           <div className="space-y-1">
             <div className="flex items-center justify-between text-[11px] text-zinc-400">
-              <span className="text-blue-400 font-medium">Townsfolk:</span>
+              <span className="text-blue-400 font-medium">Stadsbor:</span>
               <span>
                 {selTownsfolk.length}/{targetTownsfolk}
               </span>
@@ -367,7 +367,7 @@ export default function RoleBalanceTracker({
                   emptyBg: 'bg-blue-950/20',
                   emptyText: 'text-blue-400/50',
                 },
-                'Townsfolk',
+                'Stadsbo',
                 'townsfolk'
               )}
             </div>
@@ -376,7 +376,7 @@ export default function RoleBalanceTracker({
           {/* Outsiders Slots */}
           <div className="space-y-1 pt-1 border-t border-blue-950/60">
             <div className="flex items-center justify-between text-[11px] text-zinc-400">
-              <span className="text-cyan-400 font-medium">Outsiders:</span>
+              <span className="text-cyan-400 font-medium">Utbölingar:</span>
               <span>
                 {selOutsiders.length}/{targetOutsiders}
               </span>
@@ -392,7 +392,7 @@ export default function RoleBalanceTracker({
                   emptyBg: 'bg-cyan-950/20',
                   emptyText: 'text-cyan-400/50',
                 },
-                'Outsider',
+                'Utböling',
                 'outsider'
               )}
             </div>
@@ -403,7 +403,7 @@ export default function RoleBalanceTracker({
         <div className="bg-rose-950/10 border border-rose-900/30 rounded-xl p-3 space-y-2.5">
           <div className="flex items-center justify-between text-xs">
             <span className="font-bold text-rose-300 uppercase tracking-wider text-[11px]">
-              EVIL TEAM
+              DE ONDA
             </span>
             <span
               className={`text-[11px] font-bold px-2 py-0.5 rounded-md ${
@@ -419,7 +419,7 @@ export default function RoleBalanceTracker({
           {/* Minions Slots */}
           <div className="space-y-1">
             <div className="flex items-center justify-between text-[11px] text-zinc-400">
-              <span className="text-orange-400 font-medium">Minions:</span>
+              <span className="text-orange-400 font-medium">Hantlangare:</span>
               <span>
                 {selMinions.length}/{targetMinions}
               </span>
@@ -435,7 +435,7 @@ export default function RoleBalanceTracker({
                   emptyBg: 'bg-orange-950/20',
                   emptyText: 'text-orange-400/50',
                 },
-                'Minion',
+                'Hantlangare',
                 'minion'
               )}
             </div>
@@ -444,7 +444,7 @@ export default function RoleBalanceTracker({
           {/* Demons Slots */}
           <div className="space-y-1 pt-1 border-t border-red-950/60">
             <div className="flex items-center justify-between text-[11px] text-zinc-400">
-              <span className="text-red-400 font-medium">Demons:</span>
+              <span className="text-red-400 font-medium">Demoner:</span>
               <span>
                 {selDemons.length}/{targetDemons}
               </span>
@@ -472,7 +472,7 @@ export default function RoleBalanceTracker({
       {selUnknown.length > 0 && (
         <div className="bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 space-y-1.5">
           <div className="flex items-center justify-between text-[11px] font-bold text-zinc-400 uppercase">
-            <span>Custom / Travellers</span>
+            <span>Egna / resenärer</span>
             <span>{selUnknown.length}</span>
           </div>
           <div className="flex flex-wrap gap-1.5 items-center">
@@ -486,7 +486,7 @@ export default function RoleBalanceTracker({
                 emptyBg: 'bg-zinc-900',
                 emptyText: 'text-zinc-500',
               },
-              'Custom'
+              'Egen'
             )}
           </div>
         </div>

@@ -5,34 +5,34 @@ export default function AppNavBar({ activeView, onSelectView, hasActiveGame = fa
   const navItems = [
     {
       id: 'home',
-      label: 'Home',
+      label: 'Hem',
       icon: Home,
-      desc: 'Dashboard & Quick Start',
+      desc: 'Översikt & snabbstart',
     },
     {
       id: 'compendium',
-      label: 'Compendium',
+      label: 'Kompendium',
       icon: BookOpen,
-      desc: 'Characters & Reference',
+      desc: 'Karaktärer & regler',
     },
     {
       id: 'scripts',
-      label: 'Scripts',
+      label: 'Skript',
       icon: ScrollText,
-      desc: 'Editions & Builder',
+      desc: 'Utgåvor & skriptbyggare',
     },
     {
       id: 'games',
-      label: 'Games',
+      label: 'Spel',
       icon: Dices,
-      desc: 'Active Grimoire & History',
-      badge: hasActiveGame ? (activePlayerCount ? `${activePlayerCount}p` : 'LIVE') : null,
+      desc: 'Pågående grimoire & historik',
+      badge: hasActiveGame ? (activePlayerCount ? `${activePlayerCount}p` : 'PÅGÅR') : null,
     },
     {
       id: 'messages',
-      label: 'Messages',
+      label: 'Meddelanden',
       icon: MessageSquare,
-      desc: 'Big Text & Cues',
+      desc: 'Stor text & signaler',
     },
   ];
 
@@ -40,7 +40,7 @@ export default function AppNavBar({ activeView, onSelectView, hasActiveGame = fa
     <>
       {/* Mobile Bottom Navigation Bar (Fixed for One-Handed Thumb Operation) */}
       <nav
-        aria-label="Mobile Navigation"
+        aria-label="Navigering"
         className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur border-t border-zinc-800 px-2 pt-1.5 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-2xl transition-all"
       >
         <div className="grid grid-cols-5 gap-1 max-w-md mx-auto">
@@ -79,7 +79,7 @@ export default function AppNavBar({ activeView, onSelectView, hasActiveGame = fa
 
       {/* Desktop Top Sub-Bar (Integrated below Header) */}
       <nav
-        aria-label="Desktop Navigation"
+        aria-label="Navigering"
         className="hidden md:flex items-center justify-center gap-2 bg-zinc-900/80 border-b border-zinc-800 px-6 py-2 sticky top-[53px] z-20 backdrop-blur-sm"
       >
         <div className="flex items-center gap-1.5 bg-zinc-950 p-1 rounded-xl border border-zinc-800">

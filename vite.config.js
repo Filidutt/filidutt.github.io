@@ -15,9 +15,10 @@ try {
 }
 
 const buildTime = new Date().toISOString();
+const base = process.env.VITE_BASE || '/grimoire/';
 
 export default defineConfig({
-  base: process.env.VITE_BASE || '/grimoire/',
+  base,
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
     __GIT_HASH__: JSON.stringify(gitHash),
@@ -31,7 +32,8 @@ export default defineConfig({
       manifest: {
         name: 'BotC Pocket Grimoire',
         short_name: 'Grimoire',
-        description: 'Pocket Grimoire & Storyteller Assistant for Blood on the Clocktower',
+        description: 'Fickgrimoire och berättarassistent för Blood on the Clocktower',
+        lang: 'sv',
         theme_color: '#09090b',
         background_color: '#09090b',
         display: 'standalone',
@@ -53,7 +55,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
-        navigateFallbackDenylist: [/^\/grimoire\/dev/],
+        navigateFallbackDenylist: [new RegExp('^' + base + 'dev/')],
       },
     }),
   ],

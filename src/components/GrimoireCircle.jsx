@@ -176,21 +176,21 @@ export default function GrimoireCircle({
       if (!disguise) return;
       onShowToPlayer({
         title: disguise.name,
-        subtitle: selectedSeat.name ? `Seat #${selectedSeat.seat} • ${selectedSeat.name}` : `Seat #${selectedSeat.seat}`,
+        subtitle: selectedSeat.name ? `Plats #${selectedSeat.seat} • ${selectedSeat.name}` : `Plats #${selectedSeat.seat}`,
         icon: disguise.icon,
         team: 'townsfolk',
-        teamLabel: 'TOWNSFOLK',
+        teamLabel: 'STADSBO',
         description: disguise.ability,
       });
       return;
     }
 
     if (selectedSeatInfo.isTraveller) {
-      const trav = selectedSeatInfo.actualRole || { name: 'Traveller', icon: '🧳', ability: 'Traveller character' };
-      const alignLabel = selectedSeat.travellerAlignment === 'evil' ? 'EVIL TRAVELLER' : 'GOOD TRAVELLER';
+      const trav = selectedSeatInfo.actualRole || { name: 'Resenär', icon: '🧳', ability: 'Resenärskaraktär' };
+      const alignLabel = selectedSeat.travellerAlignment === 'evil' ? 'OND RESENÄR' : 'GOD RESENÄR';
       onShowToPlayer({
         title: trav.name,
-        subtitle: selectedSeat.name ? `Seat #${selectedSeat.seat} • ${selectedSeat.name}` : `Seat #${selectedSeat.seat}`,
+        subtitle: selectedSeat.name ? `Plats #${selectedSeat.seat} • ${selectedSeat.name}` : `Plats #${selectedSeat.seat}`,
         icon: trav.icon,
         team: selectedSeat.travellerAlignment === 'evil' ? 'demon' : 'townsfolk',
         teamLabel: alignLabel,
@@ -203,10 +203,10 @@ export default function GrimoireCircle({
       const role = getRoleInfo(selectedSeat.drawnToken);
       onShowToPlayer({
         title: role.name,
-        subtitle: selectedSeat.name ? `Seat #${selectedSeat.seat} • ${selectedSeat.name}` : `Seat #${selectedSeat.seat}`,
+        subtitle: selectedSeat.name ? `Plats #${selectedSeat.seat} • ${selectedSeat.name}` : `Plats #${selectedSeat.seat}`,
         icon: role.icon,
         team: role.team,
-        teamLabel: role.team.toUpperCase(),
+        teamLabel: (role.teamName || role.team).toUpperCase(),
         description: role.ability,
       });
     }
@@ -219,12 +219,12 @@ export default function GrimoireCircle({
         {/* Center of the Grimoire */}
         <div className="text-center pointer-events-none z-0 p-4">
           <div className="text-[10px] tracking-widest font-black uppercase text-amber-500/70">
-            Grimoire Table
+            Grimoire – bordet
           </div>
           <div className="text-2xl font-black text-zinc-100 tracking-tight">
             {seats.filter((s) => !s.isDead).length} / {seats.length}
           </div>
-          <div className="text-[11px] text-zinc-400 font-medium">Alive Players</div>
+          <div className="text-[11px] text-zinc-400 font-medium">Levande spelare</div>
 
           {/* Ghost Vote Total */}
           {seats.some((s) => s.isDead) && (
@@ -233,20 +233,20 @@ export default function GrimoireCircle({
               <span>
                 {seats.filter((s) => s.isDead && s.hasGhostVote !== false).length} / {seats.filter((s) => s.isDead).length}
               </span>
-              <span className="text-[10px] text-zinc-400 font-normal">ghost votes</span>
+              <span className="text-[10px] text-zinc-400 font-normal">spökröster</span>
             </div>
           )}
 
           {selectedSeatIdx !== null && (
             <div className="mt-2 text-[10px] text-amber-300/90 bg-zinc-900/90 px-2 py-1 rounded-lg border border-amber-500/30">
               {selectedSeat?.isTraveller ? (
-                <span>🧳 Traveller (Abilities skip Travellers)</span>
+                <span>🧳 Resenär (förmågor hoppar över resenärer)</span>
               ) : livingNeighbours.left !== null && livingNeighbours.right !== null ? (
                 <>
-                  Neighbours: #{seats[livingNeighbours.left].seat} & #{seats[livingNeighbours.right].seat}
+                  Grannar: #{seats[livingNeighbours.left].seat} & #{seats[livingNeighbours.right].seat}
                 </>
               ) : (
-                'No living neighbours'
+                'Inga levande grannar'
               )}
             </div>
           )}
@@ -311,7 +311,7 @@ export default function GrimoireCircle({
                 {/* Drunk Indicator (ST-only secret badge) */}
                 {isDrunk && (
                   <span
-                    title="Drunk: Secretly thinks they are Townsfolk"
+                    title="Fyllo: tror i hemlighet att det är en stadsbo"
                     className="absolute -bottom-1 -right-1 text-[9px] font-black bg-amber-500 text-zinc-950 px-1 rounded-sm shadow-md"
                   >
                     🍺
@@ -321,7 +321,7 @@ export default function GrimoireCircle({
                 {/* Traveller Badge */}
                 {isTraveller && !isDrunk && (
                   <span
-                    title="Traveller"
+                    title="Resenär"
                     className="absolute -bottom-1 -right-1 text-[9px] font-black bg-purple-600 text-white px-1 rounded-sm shadow-md"
                   >
                     🧳
@@ -331,7 +331,7 @@ export default function GrimoireCircle({
                 {/* Canonical Reminder Badge on Avatar (ST & Spy) */}
                 {reminders.length > 0 && (
                   <div
-                    title={`Reminders: ${reminders.map((r) => resolveReminderInfo(r).label).join(', ')}`}
+                    title={`Påminnelser: ${reminders.map((r) => resolveReminderInfo(r).label).join(', ')}`}
                     className="absolute -top-1.5 -right-1.5 flex items-center bg-zinc-950 border border-amber-500/70 rounded-full px-1 py-0.2 shadow-md z-20"
                   >
                     <span className="text-[10px] leading-none">{resolveReminderInfo(reminders[0]).icon}</span>
@@ -360,7 +360,7 @@ export default function GrimoireCircle({
                       e.stopPropagation();
                       if (onToggleGhostVote) onToggleGhostVote(idx);
                     }}
-                    title={s.hasGhostVote !== false ? 'Ghost Vote Available (Click to mark spent)' : 'Ghost Vote Spent (Click to restore)'}
+                    title={s.hasGhostVote !== false ? 'Spökröst kvar (klicka för att markera som använd)' : 'Spökröst använd (klicka för att återställa)'}
                     className={`text-[9px] font-bold px-1.5 py-0.2 rounded-full border transition-all ${
                       s.hasGhostVote !== false
                         ? 'bg-zinc-800 text-zinc-100 border-zinc-400 shadow-sm animate-pulse hover:bg-zinc-700'
@@ -368,7 +368,7 @@ export default function GrimoireCircle({
                     }`}
                   >
                     <span>👻</span>
-                    <span>{s.hasGhostVote !== false ? 'Vote' : 'Spent'}</span>
+                    <span>{s.hasGhostVote !== false ? 'Röst' : 'Använd'}</span>
                   </button>
                 </div>
               )}
@@ -414,14 +414,14 @@ export default function GrimoireCircle({
           onClick={onAddSeat}
           className="bg-zinc-800 hover:bg-zinc-750 border border-zinc-700 text-amber-400 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 shadow-md"
         >
-          <span>+ Add Seat #{seatCount + 1}</span>
+          <span>+ Lägg till plats #{seatCount + 1}</span>
         </button>
 
         <button
           onClick={onAddTraveller}
           className="bg-purple-950/70 hover:bg-purple-900 border border-purple-500/50 text-purple-300 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 shadow-md"
         >
-          <span>+ Add Traveller 🧳</span>
+          <span>+ Lägg till resenär 🧳</span>
         </button>
 
         {selectedSeatIdx !== null && (
@@ -429,7 +429,7 @@ export default function GrimoireCircle({
             onClick={() => setSelectedSeatIdx(null)}
             className="text-xs text-zinc-400 bg-zinc-900 border border-zinc-800 px-3 py-2 rounded-xl hover:text-zinc-200"
           >
-            Clear Selection
+            Avmarkera
           </button>
         )}
       </div>
@@ -445,16 +445,16 @@ export default function GrimoireCircle({
               </span>
               <div className="flex items-center gap-1.5">
                 <span className="font-bold text-sm text-zinc-100">
-                  {selectedSeat.name || `Seat #${selectedSeat.seat}`}
+                  {selectedSeat.name || `Plats #${selectedSeat.seat}`}
                 </span>
                 {selectedSeatInfo.isTraveller && (
                   <span className="text-[10px] bg-purple-950 text-purple-300 border border-purple-600/40 px-1.5 py-0.5 rounded font-bold">
-                    🧳 Traveller
+                    🧳 Resenär
                   </span>
                 )}
                 {selectedSeatInfo.isDrunk && (
                   <span className="text-[10px] bg-amber-950 text-amber-300 border border-amber-600/40 px-1.5 py-0.5 rounded font-bold">
-                    🍺 Drunk
+                    🍺 Fyllo
                   </span>
                 )}
               </div>
@@ -463,18 +463,18 @@ export default function GrimoireCircle({
               onClick={() => setSelectedSeatIdx(null)}
               className="text-zinc-400 hover:text-zinc-200 text-xs px-2"
             >
-              ✕ Close
+              ✕ Stäng
             </button>
           </div>
 
           {/* Player Name Input */}
           <div>
             <label className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block mb-1">
-              Player Name
+              Spelarens namn
             </label>
             <input
               type="text"
-              placeholder="Enter player name (e.g. Patrick, Sergey)..."
+              placeholder="Skriv spelarens namn (t.ex. Patrik, Sergej)..."
               value={selectedSeat.name || ''}
               onChange={(e) => onUpdateSeatName(selectedSeatIdx, e.target.value)}
               className="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-amber-500"
@@ -490,13 +490,13 @@ export default function GrimoireCircle({
                   <span className="text-2xl">🍺</span>
                   <div>
                     <div className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
-                      <span>The Drunk (Outsider)</span>
+                      <span>Fyllot (utböling)</span>
                       <span className="text-[9px] bg-amber-500 text-zinc-950 px-1 rounded font-black">
-                        SECRET
+                        HEMLIGT
                       </span>
                     </div>
                     <div className="text-[11px] text-zinc-300 mt-0.5">
-                      Thinks they are: <b className="text-amber-200">{selectedSeatInfo.shownRole?.name}</b>
+                      Tror att det är: <b className="text-amber-200">{selectedSeatInfo.shownRole?.name}</b>
                     </div>
                   </div>
                 </div>
@@ -507,12 +507,12 @@ export default function GrimoireCircle({
                   }}
                   className="text-xs bg-amber-900/60 hover:bg-amber-800/80 border border-amber-500/50 text-amber-200 px-2.5 py-1 rounded-lg font-semibold"
                 >
-                  Change Disguise
+                  Byt förklädnad
                 </button>
               </div>
 
               <div className="text-[11px] text-amber-400/80 bg-zinc-950/60 p-2 rounded-lg border border-amber-500/20">
-                🔒 <b>Anti-leak:</b> Pressing <i>Show to Player</i> will only show the Townsfolk card ({selectedSeatInfo.shownRole?.name}). The player will never know they are The Drunk!
+                🔒 <b>Skydd mot avslöjande:</b> Knappen <i>Visa för spelare</i> visar bara stadsbokortet ({selectedSeatInfo.shownRole?.name}). Spelaren får aldrig veta att det är fyllot!
               </div>
             </div>
           ) : selectedSeatInfo.isTraveller ? (
@@ -523,10 +523,10 @@ export default function GrimoireCircle({
                   <span className="text-2xl">{selectedSeatInfo.actualRole?.icon || '🧳'}</span>
                   <div>
                     <div className="text-xs font-bold text-purple-200">
-                      {selectedSeatInfo.actualRole?.name || 'Traveller'}
+                      {selectedSeatInfo.actualRole?.name || 'Resenär'}
                     </div>
                     <div className="text-[10px] text-zinc-400">
-                      Official Traveller • Does not count in bag balance
+                      Officiell resenär • räknas inte i påsens fördelning
                     </div>
                   </div>
                 </div>
@@ -537,13 +537,13 @@ export default function GrimoireCircle({
                   }}
                   className="text-xs bg-purple-900/70 hover:bg-purple-800 border border-purple-500/50 text-purple-200 px-2.5 py-1 rounded-lg font-semibold"
                 >
-                  Change Character
+                  Byt karaktär
                 </button>
               </div>
 
               {/* Storyteller Alignment Choice for Traveller */}
               <div className="flex items-center justify-between pt-1 border-t border-purple-900/60 text-xs">
-                <span className="text-zinc-400 font-medium">Traveller Alignment:</span>
+                <span className="text-zinc-400 font-medium">Resenärens lag:</span>
                 <div className="flex items-center gap-1.5">
                   <button
                     onClick={() => onSetTravellerAlignment(selectedSeatIdx, 'good')}
@@ -553,7 +553,7 @@ export default function GrimoireCircle({
                         : 'bg-zinc-950 border-zinc-800 text-zinc-400'
                     }`}
                   >
-                    😇 Good
+                    😇 God
                   </button>
                   <button
                     onClick={() => onSetTravellerAlignment(selectedSeatIdx, 'evil')}
@@ -563,7 +563,7 @@ export default function GrimoireCircle({
                         : 'bg-zinc-950 border-zinc-800 text-zinc-400'
                     }`}
                   >
-                    😈 Evil
+                    😈 Ond
                   </button>
                 </div>
               </div>
@@ -580,12 +580,12 @@ export default function GrimoireCircle({
                         {getRoleInfo(selectedSeat.drawnToken).name}
                       </div>
                       <div className="text-[10px] uppercase text-zinc-400">
-                        {getRoleInfo(selectedSeat.drawnToken).team}
+                        {getRoleInfo(selectedSeat.drawnToken).teamName}
                       </div>
                     </div>
                   </>
                 ) : (
-                  <div className="text-xs text-zinc-500 italic">No token assigned yet</div>
+                  <div className="text-xs text-zinc-500 italic">Ingen polett tilldelad än</div>
                 )}
               </div>
 
@@ -596,7 +596,7 @@ export default function GrimoireCircle({
                 }}
                 className="shrink-0 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-amber-400 text-xs font-bold px-3 py-1.5 rounded-lg"
               >
-                {selectedSeat.drawnToken ? 'Change Role' : '+ Assign'}
+                {selectedSeat.drawnToken ? 'Byt roll' : '+ Tilldela'}
               </button>
             </div>
           )}
@@ -612,7 +612,7 @@ export default function GrimoireCircle({
               }`}
             >
               <span>🍺</span>
-              <span>{selectedSeatInfo.isDrunk ? 'Remove Drunk' : 'Is The Drunk'}</span>
+              <span>{selectedSeatInfo.isDrunk ? 'Inte fyllo' : 'Är fyllot'}</span>
             </button>
 
             <button
@@ -624,7 +624,7 @@ export default function GrimoireCircle({
               }`}
             >
               <span>🧳</span>
-              <span>{selectedSeatInfo.isTraveller ? 'Townsperson' : 'Mark Traveller'}</span>
+              <span>{selectedSeatInfo.isTraveller ? 'Ej resenär' : 'Markera som resenär'}</span>
             </button>
           </div>
 
@@ -634,8 +634,8 @@ export default function GrimoireCircle({
             {selectedSeat.reminders && selectedSeat.reminders.length > 0 && (
               <div className="p-2 rounded-xl bg-zinc-950 border border-amber-500/30 space-y-1.5">
                 <div className="text-[10px] font-bold uppercase tracking-wider text-amber-400 flex items-center justify-between">
-                  <span>Tokens on this seat ({selectedSeat.reminders.length}):</span>
-                  <span className="text-[9px] text-zinc-500 font-normal">Tap to remove</span>
+                  <span>Poletter på platsen ({selectedSeat.reminders.length}):</span>
+                  <span className="text-[9px] text-zinc-500 font-normal">Tryck för att ta bort</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {selectedSeat.reminders.map((remId) => {
@@ -646,7 +646,7 @@ export default function GrimoireCircle({
                         type="button"
                         onClick={() => onToggleReminder(selectedSeatIdx, remId)}
                         className="text-xs font-semibold px-2 py-1 rounded-lg bg-amber-500/20 hover:bg-rose-950/40 border border-amber-500/70 hover:border-rose-500 text-amber-200 hover:text-rose-200 transition-all flex items-center gap-1 shadow-sm"
-                        title="Click to remove token from seat"
+                        title="Klicka för att ta bort poletten från platsen"
                       >
                         <span>{info.icon}</span>
                         <span>{info.label}</span>
@@ -662,7 +662,7 @@ export default function GrimoireCircle({
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                  Add Reminder Token:
+                  Lägg till påminnelse:
                 </div>
                 <div className="flex items-center gap-1 bg-zinc-950 p-0.5 rounded-lg border border-zinc-800">
                   <button
@@ -674,7 +674,7 @@ export default function GrimoireCircle({
                         : 'text-zinc-500 hover:text-zinc-300'
                     }`}
                   >
-                    Script ({inPlayReminders.length})
+                    Skriptet ({inPlayReminders.length})
                   </button>
                   <button
                     type="button"
@@ -685,7 +685,7 @@ export default function GrimoireCircle({
                         : 'text-zinc-500 hover:text-zinc-300'
                     }`}
                   >
-                    All Roles ({allRemindersList.length})
+                    Alla roller ({allRemindersList.length})
                   </button>
                 </div>
               </div>
@@ -725,7 +725,7 @@ export default function GrimoireCircle({
               >
                 <input
                   type="text"
-                  placeholder="Custom token label..."
+                  placeholder="Egen påminnelse..."
                   value={customReminderInput}
                   onChange={(e) => setCustomReminderInput(e.target.value)}
                   className="flex-1 bg-zinc-950 border border-zinc-800 rounded-lg px-2.5 py-1 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-amber-500/60"
@@ -735,7 +735,7 @@ export default function GrimoireCircle({
                   disabled={!customReminderInput.trim()}
                   className="px-2.5 py-1 bg-zinc-800 hover:bg-zinc-750 disabled:opacity-40 text-amber-300 text-xs font-bold rounded-lg border border-zinc-700 transition-colors"
                 >
-                  + Add
+                  + Lägg till
                 </button>
               </form>
             </div>
@@ -749,12 +749,12 @@ export default function GrimoireCircle({
                 className="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow"
               >
                 <span>👁️</span>
-                <span>Show Character to Player</span>
+                <span>Visa karaktären för spelaren</span>
               </button>
               <div className="text-[10px] text-zinc-400 text-center mt-1">
                 {selectedSeatInfo.isDrunk
-                  ? `🔒 Safe: Displays only ${selectedSeatInfo.shownRole?.name} card.`
-                  : 'Displays high-contrast fullscreen card.'}
+                  ? `🔒 Säkert: visar bara ${selectedSeatInfo.shownRole?.name}-kortet.`
+                  : 'Visar ett kort i helskärm med hög kontrast.'}
               </div>
             </div>
           )}
@@ -773,10 +773,10 @@ export default function GrimoireCircle({
               >
                 <span>👻</span>
                 <span>
-                  Ghost Vote: {selectedSeat.hasGhostVote !== false ? 'Available (1 vote ready)' : 'Spent (0 votes left)'}
+                  Spökröst: {selectedSeat.hasGhostVote !== false ? 'Kvar (1 röst)' : 'Använd (0 röster kvar)'}
                 </span>
                 <span className="text-[10px] text-zinc-400 font-normal">
-                  ({selectedSeat.hasGhostVote !== false ? 'tap to spend' : 'tap to restore'})
+                  ({selectedSeat.hasGhostVote !== false ? 'tryck för att använda' : 'tryck för att återställa'})
                 </span>
               </button>
             </div>
@@ -792,7 +792,7 @@ export default function GrimoireCircle({
                   : 'bg-zinc-800 hover:bg-zinc-750 border-zinc-700 text-zinc-300'
               }`}
             >
-              <span>{selectedSeat.isDead ? '❤️ Revive Player' : '💀 Mark Dead'}</span>
+              <span>{selectedSeat.isDead ? '❤️ Återuppliva' : '💀 Markera som död'}</span>
             </button>
 
             <button
@@ -802,7 +802,7 @@ export default function GrimoireCircle({
               }}
               className="py-2 text-[11px] text-rose-400 hover:text-rose-300 border border-rose-900/40 rounded-xl hover:bg-rose-950/20"
             >
-              Remove Seat #{selectedSeat.seat}
+              Ta bort plats #{selectedSeat.seat}
             </button>
           </div>
         </div>
@@ -821,10 +821,10 @@ export default function GrimoireCircle({
             <div className="flex justify-between items-center border-b border-zinc-800 pb-2">
               <span className="font-bold text-sm text-zinc-100">
                 {pickerMode === 'traveller'
-                  ? `Seat #${seats[selectedSeatIdx].seat} — Pick Traveller`
+                  ? `Plats #${seats[selectedSeatIdx].seat} — välj resenär`
                   : pickerMode === 'drunkDisguise'
-                  ? `Seat #${seats[selectedSeatIdx].seat} — Pick Townsfolk Disguise`
-                  : `Seat #${seats[selectedSeatIdx].seat} — Pick Token from Bag`}
+                  ? `Plats #${seats[selectedSeatIdx].seat} — välj stadsbo som förklädnad`
+                  : `Plats #${seats[selectedSeatIdx].seat} — välj polett ur påsen`}
               </span>
               <button
                 onClick={() => setShowTokenPicker(false)}
@@ -840,7 +840,7 @@ export default function GrimoireCircle({
                 {/* Script vs All Travellers Toggle */}
                 <div className="flex items-center justify-between gap-1 pb-1 border-b border-zinc-800 text-xs">
                   <div className="text-[11px] text-zinc-400 font-medium">
-                    Filter Travellers:
+                    Visa resenärer:
                   </div>
                   <div className="flex items-center gap-1 bg-zinc-950 p-0.5 rounded-lg border border-zinc-800">
                     <button
@@ -852,7 +852,7 @@ export default function GrimoireCircle({
                           : 'text-zinc-400 hover:text-zinc-200'
                       }`}
                     >
-                      ⭐ Script ({getScriptTravellers(scriptName).length})
+                      ⭐ Skriptet ({getScriptTravellers(scriptName).length})
                     </button>
                     <button
                       type="button"
@@ -863,7 +863,7 @@ export default function GrimoireCircle({
                           : 'text-zinc-400 hover:text-zinc-200'
                       }`}
                     >
-                      🌐 All ({getAllTravellers().length})
+                      🌐 Alla ({getAllTravellers().length})
                     </button>
                   </div>
                 </div>
@@ -933,7 +933,7 @@ export default function GrimoireCircle({
                         <span>{tf.icon}</span>
                         <span className="truncate">{tf.name}</span>
                       </div>
-                      <div className="text-[10px] text-zinc-400 mt-0.5">Townsfolk disguise</div>
+                      <div className="text-[10px] text-zinc-400 mt-0.5">Förklädnad (stadsbo)</div>
                     </button>
                   );
                 })}
@@ -945,7 +945,7 @@ export default function GrimoireCircle({
               <div className="space-y-2.5">
                 {/* Source Tabs: From Bag vs Off-Script */}
                 <div className="flex items-center justify-between gap-1 pb-1 border-b border-zinc-800 text-xs">
-                  <div className="text-[11px] text-zinc-400 font-medium">Role Source:</div>
+                  <div className="text-[11px] text-zinc-400 font-medium">Roller från:</div>
                   <div className="flex items-center gap-1 bg-zinc-950 p-0.5 rounded-lg border border-zinc-800">
                     <button
                       type="button"
@@ -956,7 +956,7 @@ export default function GrimoireCircle({
                           : 'text-zinc-400 hover:text-zinc-200'
                       }`}
                     >
-                      🎒 Bag ({physicalTokensInBag.length})
+                      🎒 Påsen ({physicalTokensInBag.length})
                     </button>
                     <button
                       type="button"
@@ -967,7 +967,7 @@ export default function GrimoireCircle({
                           : 'text-zinc-400 hover:text-zinc-200'
                       }`}
                     >
-                      🌐 Off-Script ({allAvailableRoles.length})
+                      🌐 Utanför skriptet ({allAvailableRoles.length})
                     </button>
                   </div>
                 </div>
@@ -977,7 +977,7 @@ export default function GrimoireCircle({
                   <div className="grid grid-cols-2 gap-2 max-h-72 overflow-y-auto pr-0.5">
                     {physicalTokensInBag.length === 0 ? (
                       <div className="col-span-2 py-6 text-center text-xs text-zinc-500 italic">
-                        No tokens in bag. Switch to Off-Script or add roles in Bag tab.
+                        Inga poletter i påsen. Välj Utanför skriptet eller lägg till roller under fliken Påse.
                       </div>
                     ) : (
                       physicalTokensInBag.map((tid) => {
@@ -1006,7 +1006,7 @@ export default function GrimoireCircle({
                               <span className="truncate">{info.name}</span>
                             </div>
                             <div className="text-[10px] text-zinc-400 mt-0.5">
-                              {taken ? `Seat #${taken.seat}` : 'In bag'}
+                              {taken ? `Plats #${taken.seat}` : 'I påsen'}
                             </div>
                           </button>
                         );
@@ -1022,18 +1022,18 @@ export default function GrimoireCircle({
                     <div className="space-y-1.5">
                       <input
                         type="text"
-                        placeholder="Search any character (e.g. Barber, Pit-Hag)..."
+                        placeholder="Sök valfri karaktär (t.ex. Barberare, Grophäxa)..."
                         value={offScriptSearch}
                         onChange={(e) => setOffScriptSearch(e.target.value)}
                         className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-2.5 py-1 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500/60"
                       />
                       <div className="flex flex-wrap gap-1 text-[10px]">
                         {[
-                          { id: 'all', label: 'All' },
-                          { id: 'townsfolk', label: 'Townsfolk' },
-                          { id: 'outsider', label: 'Outsiders' },
-                          { id: 'minion', label: 'Minions' },
-                          { id: 'demon', label: 'Demons' },
+                          { id: 'all', label: 'Alla' },
+                          { id: 'townsfolk', label: 'Stadsbor' },
+                          { id: 'outsider', label: 'Utbölingar' },
+                          { id: 'minion', label: 'Hantlangare' },
+                          { id: 'demon', label: 'Demoner' },
                           { id: 'experimental', label: 'Exp' },
                         ].map((tf) => (
                           <button
@@ -1056,7 +1056,7 @@ export default function GrimoireCircle({
                     <div className="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto pr-0.5">
                       {filteredOffScriptRoles.length === 0 ? (
                         <div className="col-span-2 py-6 text-center text-xs text-zinc-500 italic">
-                          No matching characters found.
+                          Inga karaktärer hittades.
                         </div>
                       ) : (
                         filteredOffScriptRoles.map((r) => {
@@ -1082,7 +1082,7 @@ export default function GrimoireCircle({
                                     <span className="truncate">{r.name}</span>
                                   </span>
                                   <span className={`text-[8px] uppercase font-bold px-1 py-0.2 rounded border ${st.badge}`}>
-                                    {r.edition?.toUpperCase() || 'CUSTOM'}
+                                    {r.edition?.toUpperCase() || 'EGEN'}
                                   </span>
                                 </div>
                                 <div className="text-[9px] text-zinc-400 mt-0.5 line-clamp-2 leading-tight">
@@ -1107,7 +1107,7 @@ export default function GrimoireCircle({
                 }}
                 className="w-full py-2 text-xs text-rose-400 border border-rose-900/40 rounded-xl hover:bg-rose-950/20"
               >
-                Clear Token from Seat
+                Ta bort poletten från platsen
               </button>
             )}
           </div>

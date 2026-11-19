@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
 const OFFICIAL_PROMPTS = [
-  { id: 'choose_player', title: 'Choose a player', category: 'action', color: 'amber' },
-  { id: 'point_two', title: 'Point to 2 players', category: 'action', color: 'amber' },
-  { id: 'choose_char', title: 'Choose a character', category: 'action', color: 'amber' },
-  { id: 'these_minions', title: 'These are your Minions', category: 'evil', color: 'orange' },
-  { id: 'this_demon', title: 'This is your Demon', category: 'evil', color: 'red' },
-  { id: 'close_eyes', title: 'Close your eyes', category: 'action', color: 'zinc' },
-  { id: 'did_nominate', title: 'Did you nominate today?', category: 'question', color: 'cyan' },
-  { id: 'did_vote', title: 'Did you vote today?', category: 'question', color: 'cyan' },
-  { id: 'ans_yes', title: 'YES', category: 'answer', color: 'emerald' },
-  { id: 'ans_no', title: 'NO', category: 'answer', color: 'rose' },
+  { id: 'choose_player', title: 'Välj en spelare', category: 'action', color: 'amber' },
+  { id: 'point_two', title: 'Peka på 2 spelare', category: 'action', color: 'amber' },
+  { id: 'choose_char', title: 'Välj en karaktär', category: 'action', color: 'amber' },
+  { id: 'these_minions', title: 'Detta är dina hantlangare', category: 'evil', color: 'orange' },
+  { id: 'this_demon', title: 'Detta är din demon', category: 'evil', color: 'red' },
+  { id: 'close_eyes', title: 'Blunda', category: 'action', color: 'zinc' },
+  { id: 'did_nominate', title: 'Nominerade du i dag?', category: 'question', color: 'cyan' },
+  { id: 'did_vote', title: 'Röstade du i dag?', category: 'question', color: 'cyan' },
+  { id: 'ans_yes', title: 'JA', category: 'answer', color: 'emerald' },
+  { id: 'ans_no', title: 'NEJ', category: 'answer', color: 'rose' },
   { id: 'count_0', title: '0', category: 'count', color: 'purple' },
   { id: 'count_1', title: '1', category: 'count', color: 'purple' },
   { id: 'count_2', title: '2', category: 'count', color: 'purple' },
@@ -45,7 +45,7 @@ export function FullscreenFlashcard({ card, onClose }) {
       <button
         onClick={onClose}
         className="absolute top-5 right-5 text-zinc-400 hover:text-white bg-zinc-900 border border-zinc-700 rounded-full w-12 h-12 flex items-center justify-center text-lg font-bold shadow-md"
-        aria-label="Close"
+        aria-label="Stäng"
       >
         ✕
       </button>
@@ -83,7 +83,7 @@ export function FullscreenFlashcard({ card, onClose }) {
       )}
 
       <div className="absolute bottom-6 text-zinc-500 text-xs font-semibold tracking-widest uppercase">
-        Tap anywhere to dismiss
+        Tryck var som helst för att stänga
       </div>
     </div>
   );
@@ -104,7 +104,7 @@ export default function NightFlashcards({
     if (!customText.trim()) return;
     onShowCard({
       title: customText.trim(),
-      subtitle: 'Custom Prompt',
+      subtitle: 'Eget meddelande',
       color: 'amber',
     });
   };
@@ -122,22 +122,22 @@ export default function NightFlashcards({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5 font-bold text-red-300 text-xs">
               <span className="text-base">🃏</span>
-              <span>Demon Bluffs (3 Out-of-play Good Roles)</span>
+              <span>Demonbluffar (3 goda roller som inte är i spel)</span>
             </div>
             <button
               type="button"
               onClick={() => {
                 const bluffNames = demonBluffs.map((id) => getRoleInfo(id)?.name || id).join(' • ');
                 onShowCard({
-                  title: 'DEMON BLUFFS',
-                  subtitle: 'These roles are NOT in play',
+                  title: 'DEMONBLUFFAR',
+                  subtitle: 'Dessa roller är INTE i spel',
                   description: bluffNames,
                   color: 'red',
                 });
               }}
               className="text-[10px] font-bold bg-red-900/80 hover:bg-red-800 text-red-200 border border-red-700/80 px-2.5 py-1 rounded-lg transition-colors shadow-sm"
             >
-              Show All 3 ➔
+              Visa alla 3 ➔
             </button>
           </div>
           <div className="grid grid-cols-3 gap-2">
@@ -151,19 +151,19 @@ export default function NightFlashcards({
                   onClick={() =>
                     onShowCard({
                       title: r.name,
-                      subtitle: 'Demon Bluff (Not in Play)',
+                      subtitle: 'Demonbluff (inte i spel)',
                       icon: r.icon,
                       description: r.ability,
-                      teamLabel: r.team,
+                      teamLabel: r.teamName,
                       color: r.team === 'outsider' ? 'cyan' : 'townsfolk',
                     })
                   }
                   className="bg-zinc-950/90 hover:bg-zinc-900 border border-zinc-700/80 hover:border-red-500/60 rounded-xl p-2.5 text-center transition-all active:scale-95 shadow-sm"
-                  title={`Show ${r.name} card`}
+                  title={`Visa ${r.name} – kort`}
                 >
                   <div className="text-2xl mb-1">{r.icon}</div>
                   <div className="text-xs font-bold text-zinc-100 truncate">{r.name}</div>
-                  <div className="text-[10px] text-zinc-400 capitalize">{r.team}</div>
+                  <div className="text-[10px] text-zinc-400 capitalize">{r.teamName}</div>
                 </button>
               );
             })}
@@ -174,13 +174,13 @@ export default function NightFlashcards({
       {/* Custom Text Input Bar */}
       <section className="bg-zinc-900 border border-zinc-800 rounded-2xl p-3.5 space-y-2">
         <div className="flex items-center justify-between text-xs font-semibold text-zinc-400">
-          <span>Custom Message (Big Text):</span>
-          <span className="text-[10px] text-zinc-500">Free input</span>
+          <span>Eget meddelande (stor text):</span>
+          <span className="text-[10px] text-zinc-500">Fritext</span>
         </div>
         <form onSubmit={handleShowCustom} className="flex gap-2">
           <input
             type="text"
-            placeholder="Type anything (e.g. You are safe)..."
+            placeholder="Skriv vad som helst (t.ex. Du är skyddad)..."
             value={customText}
             onChange={(e) => setCustomText(e.target.value)}
             className="flex-1 bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-amber-500"
@@ -190,7 +190,7 @@ export default function NightFlashcards({
             disabled={!customText.trim()}
             className="bg-amber-500 disabled:opacity-40 text-zinc-950 font-bold text-xs px-4 py-2 rounded-xl shrink-0 hover:bg-amber-400"
           >
-            Show Big
+            Visa stort
           </button>
         </form>
       </section>
@@ -198,27 +198,27 @@ export default function NightFlashcards({
       {/* Answers & Count Buttons */}
       <section className="space-y-2">
         <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-          Quick Answers & Counts
+          Snabbsvar & antal
         </h2>
         <div className="grid grid-cols-2 gap-2">
           <button
-            onClick={() => onShowCard({ title: 'YES', subtitle: 'Storyteller Answer', color: 'emerald' })}
+            onClick={() => onShowCard({ title: 'JA', subtitle: 'Berättarens svar', color: 'emerald' })}
             className="py-3 rounded-xl bg-emerald-950/40 border border-emerald-600/50 text-emerald-400 font-black text-xl hover:bg-emerald-900/40"
           >
-            YES
+            JA
           </button>
           <button
-            onClick={() => onShowCard({ title: 'NO', subtitle: 'Storyteller Answer', color: 'rose' })}
+            onClick={() => onShowCard({ title: 'NEJ', subtitle: 'Berättarens svar', color: 'rose' })}
             className="py-3 rounded-xl bg-rose-950/40 border border-rose-600/50 text-rose-400 font-black text-xl hover:bg-rose-900/40"
           >
-            NO
+            NEJ
           </button>
         </div>
         <div className="grid grid-cols-4 gap-2 pt-1">
           {['0', '1', '2', '3'].map((num) => (
             <button
               key={num}
-              onClick={() => onShowCard({ title: num, subtitle: 'Count / Fingers', color: 'purple' })}
+              onClick={() => onShowCard({ title: num, subtitle: 'Antal / fingrar', color: 'purple' })}
               className="py-2.5 rounded-xl bg-purple-950/40 border border-purple-600/50 text-purple-300 font-bold text-lg hover:bg-purple-900/40"
             >
               {num}
@@ -230,13 +230,13 @@ export default function NightFlashcards({
       {/* Official Night Prompts */}
       <section className="space-y-2">
         <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-          Official Night Directions
+          Officiella nattinstruktioner
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {OFFICIAL_PROMPTS.filter((p) => p.category === 'action' || p.category === 'evil' || p.category === 'question').map((prompt) => (
             <button
               key={prompt.id}
-              onClick={() => onShowCard({ title: prompt.title, subtitle: 'Night Instruction', color: prompt.color })}
+              onClick={() => onShowCard({ title: prompt.title, subtitle: 'Nattinstruktion', color: prompt.color })}
               className="px-3.5 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-left text-sm font-semibold text-zinc-200 hover:border-amber-500/50 hover:bg-zinc-850 flex items-center justify-between"
             >
               <span>{prompt.title}</span>
@@ -250,10 +250,10 @@ export default function NightFlashcards({
       <section className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-            Show Character Token ({rolesToDisplay.length})
+            Visa karaktärspolett ({rolesToDisplay.length})
           </h2>
           <span className="text-[10px] text-zinc-500">
-            {bagRoles.length > 0 ? 'From Bag' : 'All Script'}
+            {bagRoles.length > 0 ? 'Från påsen' : 'Hela skriptet'}
           </span>
         </div>
         <div className="grid grid-cols-2 gap-2">
@@ -265,10 +265,10 @@ export default function NightFlashcards({
                 onClick={() =>
                   onShowCard({
                     title: role.name,
-                    subtitle: 'This player is / Character in play',
+                    subtitle: 'Denna spelare är / Karaktär i spel',
                     icon: role.icon,
                     team: role.team,
-                    teamLabel: role.team.toUpperCase(),
+                    teamLabel: (role.teamName || role.team).toUpperCase(),
                     description: role.ability,
                   })
                 }
@@ -277,7 +277,7 @@ export default function NightFlashcards({
                 <span className="text-xl shrink-0">{role.icon || '✦'}</span>
                 <div className="min-w-0 flex-1">
                   <div className="text-xs font-bold text-zinc-200 truncate">{role.name}</div>
-                  <div className="text-[10px] uppercase text-zinc-500 font-medium">{role.team}</div>
+                  <div className="text-[10px] uppercase text-zinc-500 font-medium">{role.teamName}</div>
                 </div>
               </button>
             );

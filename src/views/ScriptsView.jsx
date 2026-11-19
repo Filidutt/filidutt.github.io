@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { SCRIPT_PRESETS, parseScriptJson } from '../data/scripts';
-import { getAllRoles, resolveRoleInfo } from '../data/roles';
+import { getAllRoles, resolveRoleInfo, TEAM_NAMES } from '../data/roles';
 
 export default function ScriptsView({
   currentScriptName,
@@ -19,7 +19,7 @@ export default function ScriptsView({
   const [importSuccess, setImportSuccess] = useState(null); // { name, author, roles }
 
   // Builder State
-  const [builderName, setBuilderName] = useState('My Custom Script');
+  const [builderName, setBuilderName] = useState('Mitt skript');
   const [builderAuthor, setBuilderAuthor] = useState('');
   const [builderSelectedRoles, setBuilderSelectedRoles] = useState([]);
   const [builderFilterTeam, setBuilderFilterTeam] = useState('all');
@@ -69,7 +69,7 @@ export default function ScriptsView({
       const trimmedUrl = importUrl.trim();
       const res = await fetch(trimmedUrl);
       if (!res.ok) {
-        throw new Error(`Server returned HTTP ${res.status}: ${res.statusText}`);
+        throw new Error(`Servern svarade HTTP ${res.status}: ${res.statusText}`);
       }
       const text = await res.text();
       const parsed = parseScriptJson(text);
@@ -81,8 +81,8 @@ export default function ScriptsView({
       console.warn('URL Script fetch error:', err);
       setImportError(
         err.message?.includes('Failed to fetch')
-          ? 'Network / CORS error: The server blocked direct in-browser download. Please open the link, copy its text, and paste it into the "Paste JSON" box below.'
-          : err.message || 'Failed to download or parse script.'
+          ? 'Nätverks-/CORS-fel: servern tillåter inte nedladdning direkt i webbläsaren. Öppna länken, kopiera texten och klistra in den i rutan för JSON nedan.'
+          : err.message || 'Kunde inte ladda ner eller tolka skriptet.'
       );
     } finally {
       setImportLoading(false);
@@ -104,10 +104,10 @@ export default function ScriptsView({
         if (parsed.error) throw new Error(parsed.error);
         setImportSuccess(parsed);
       } catch (err) {
-        setImportError(err.message || 'Failed to parse JSON file');
+        setImportError(err.message || 'Kunde inte tolka JSON-filen');
       }
     };
-    reader.onerror = () => setImportError('Failed to read file');
+    reader.onerror = () => setImportError('Kunde inte läsa filen');
     reader.readAsText(file);
   };
 
@@ -134,17 +134,17 @@ export default function ScriptsView({
   // Save builder script
   const handleSaveBuiltScript = () => {
     if (!builderName.trim()) {
-      alert('Please enter a script name');
+      alert('Ange ett namn på skriptet');
       return;
     }
     if (builderSelectedRoles.length < 5) {
-      alert('Please select at least 5 roles for your script');
+      alert('Välj minst 5 roller till skriptet');
       return;
     }
     const newScript = {
       id: 'custom_' + Date.now(),
       name: builderName.trim(),
-      author: builderAuthor.trim() || 'Custom Storyteller',
+      author: builderAuthor.trim() || 'Okänd berättare',
       roles: builderSelectedRoles,
       createdAt: new Date().toISOString(),
     };
@@ -159,10 +159,10 @@ export default function ScriptsView({
         <div>
           <h1 className="text-xl sm:text-2xl font-black text-zinc-100 flex items-center gap-2">
             <span>📜</span>
-            <span>Scripts & Editions</span>
+            <span>Skript & utgåvor</span>
           </h1>
           <p className="text-xs text-zinc-400 mt-0.5">
-            Active: <strong className="text-amber-400">{currentScriptName}</strong>
+            Aktivt: <strong className="text-amber-400">{currentScriptName}</strong>
           </p>
         </div>
       </div>
@@ -177,7 +177,7 @@ export default function ScriptsView({
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
         >
-          👑 Core Presets
+          👑 Grundutgåvor
         </button>
         <button
           onClick={() => setActiveSubTab('import')}
@@ -187,7 +187,7 @@ export default function ScriptsView({
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
         >
-          🔗 Import
+          🔗 Importera
         </button>
         <button
           onClick={() => setActiveSubTab('builder')}
@@ -197,7 +197,7 @@ export default function ScriptsView({
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
         >
-          🛠️ Builder
+          🛠️ Bygg
         </button>
         <button
           onClick={() => setActiveSubTab('saved')}
@@ -207,7 +207,7 @@ export default function ScriptsView({
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
         >
-          📁 Saved ({customScripts.length})
+          📁 Sparade ({customScripts.length})
         </button>
       </div>
 
@@ -215,7 +215,7 @@ export default function ScriptsView({
       {activeSubTab === 'presets' && (
         <div className="space-y-4">
           <p className="text-xs text-zinc-400">
-            The three official foundational editions designed by Steven Medway.
+            De tre officiella grundutgåvorna, skapade av Steven Medway.
           </p>
           <div className="space-y-3">
             {Object.entries(SCRIPT_PRESETS).map(([key, script]) => {
@@ -235,7 +235,7 @@ export default function ScriptsView({
                         <h2 className="text-base font-bold text-zinc-100">{script.name}</h2>
                         {isCurrent && (
                           <span className="text-[10px] font-bold bg-amber-500 text-zinc-950 px-2 py-0.5 rounded-full">
-                            Active Script
+                            Aktivt skript
                           </span>
                         )}
                       </div>
@@ -260,14 +260,14 @@ export default function ScriptsView({
                     })}
                     {script.roles.length > 10 && (
                       <span className="text-[11px] bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded-md">
-                        +{script.roles.length - 10} more
+                        +{script.roles.length - 10} till
                       </span>
                     )}
                   </div>
 
                   <div className="pt-2 flex items-center justify-between border-t border-zinc-800/80">
                     <span className="text-xs text-zinc-400 font-medium">
-                      {script.roles.length} total roles
+                      {script.roles.length} roller totalt
                     </span>
                     <button
                       onClick={() => onSelectScript(script.name, script.roles)}
@@ -278,7 +278,7 @@ export default function ScriptsView({
                           : 'bg-amber-500 hover:bg-amber-400 text-zinc-950 shadow-md active:scale-95'
                       }`}
                     >
-                      {isCurrent ? 'Currently Playing' : 'Play with this Script ➔'}
+                      {isCurrent ? 'Spelas nu' : 'Spela med det här skriptet ➔'}
                     </button>
                   </div>
                 </div>
@@ -295,10 +295,10 @@ export default function ScriptsView({
           <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 space-y-3">
             <div className="flex items-center gap-2">
               <span className="text-base">🔗</span>
-              <h2 className="text-sm font-bold text-zinc-100">Import from Web Link (URL)</h2>
+              <h2 className="text-sm font-bold text-zinc-100">Importera från webblänk (URL)</h2>
             </div>
             <p className="text-xs text-zinc-400">
-              Enter any direct URL to a script JSON (e.g. from GitHub or Blood on the Clocktower Script Tool).
+              Ange en direktlänk till en skript-JSON (t.ex. från GitHub eller Blood on the Clocktowers skriptverktyg).
             </p>
             <div className="flex gap-2">
               <input
@@ -313,7 +313,7 @@ export default function ScriptsView({
                 disabled={importLoading || !importUrl.trim()}
                 className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 text-xs font-bold rounded-xl transition-all disabled:opacity-50 shrink-0"
               >
-                {importLoading ? 'Fetching...' : 'Fetch Script'}
+                {importLoading ? 'Hämtar...' : 'Hämta skript'}
               </button>
             </div>
           </div>
@@ -323,10 +323,10 @@ export default function ScriptsView({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-base">📄</span>
-                <h2 className="text-sm font-bold text-zinc-100">Load File or Paste JSON</h2>
+                <h2 className="text-sm font-bold text-zinc-100">Läs in fil eller klistra in JSON</h2>
               </div>
               <label className="cursor-pointer bg-zinc-800 hover:bg-zinc-750 text-zinc-200 border border-zinc-700 px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors">
-                <span>Upload .json</span>
+                <span>Ladda upp .json</span>
                 <input
                   type="file"
                   accept=".json,application/json"
@@ -339,7 +339,7 @@ export default function ScriptsView({
             <textarea
               value={importText}
               onChange={(e) => setImportText(e.target.value)}
-              placeholder='Paste script JSON here... e.g. [{"id": "_meta", "name": "My Script"}, "washerwoman", "librarian", ...]'
+              placeholder='Klistra in skript-JSON här... t.ex. [{"id": "_meta", "name": "Mitt skript"}, "washerwoman", "librarian", ...]'
               rows={4}
               className="w-full bg-zinc-950 border border-zinc-700/80 rounded-xl p-3 text-xs font-mono text-zinc-200 placeholder:text-zinc-500 focus:outline-none focus:border-amber-400"
             />
@@ -348,7 +348,7 @@ export default function ScriptsView({
                 onClick={handleParseText}
                 className="w-full py-2 bg-zinc-800 hover:bg-zinc-750 border border-zinc-700 text-zinc-200 font-bold rounded-xl text-xs transition-colors"
               >
-                Parse Pasted JSON
+                Tolka inklistrad JSON
               </button>
             )}
           </div>
@@ -366,14 +366,14 @@ export default function ScriptsView({
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-bold text-emerald-300">
-                    ✓ Script Parsed: {importSuccess.name}
+                    ✓ Skript inläst: {importSuccess.name}
                   </h3>
                   {importSuccess.author && (
-                    <p className="text-xs text-zinc-400">By {importSuccess.author}</p>
+                    <p className="text-xs text-zinc-400">Av {importSuccess.author}</p>
                   )}
                 </div>
                 <span className="text-xs font-black bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                  {importSuccess.roles.length} Roles
+                  {importSuccess.roles.length} roller
                 </span>
               </div>
 
@@ -397,21 +397,21 @@ export default function ScriptsView({
                   onClick={() => onSelectScript(importSuccess.name, importSuccess.roles)}
                   className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-xs transition-all shadow-md text-center"
                 >
-                  Play with this Script Now ➔
+                  Spela med det här skriptet nu ➔
                 </button>
                 <button
                   onClick={() =>
                     handleSaveToCustom({
                       id: 'custom_' + Date.now(),
                       name: importSuccess.name,
-                      author: importSuccess.author || 'Imported Script',
+                      author: importSuccess.author || 'Importerat skript',
                       roles: importSuccess.roles,
                       createdAt: new Date().toISOString(),
                     })
                   }
                   className="py-2.5 px-4 bg-zinc-800 hover:bg-zinc-750 border border-zinc-700 text-zinc-200 font-bold rounded-xl text-xs transition-colors"
                 >
-                  Save to My Scripts 💾
+                  Spara till mina skript 💾
                 </button>
               </div>
             </div>
@@ -425,26 +425,26 @@ export default function ScriptsView({
           <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 space-y-3">
             <h2 className="text-sm font-bold text-zinc-100 flex items-center gap-2">
               <span>🛠️</span>
-              <span>Create New Script</span>
+              <span>Skapa nytt skript</span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
-                <label className="text-[11px] font-bold text-zinc-400 uppercase">Script Name</label>
+                <label className="text-[11px] font-bold text-zinc-400 uppercase">Skriptets namn</label>
                 <input
                   type="text"
                   value={builderName}
                   onChange={(e) => setBuilderName(e.target.value)}
-                  placeholder="e.g. Midnight Chaos"
+                  placeholder="t.ex. Midnattskaos"
                   className="w-full bg-zinc-950 border border-zinc-700/80 rounded-xl px-3 py-2 text-xs text-zinc-100 focus:outline-none focus:border-amber-400 mt-1"
                 />
               </div>
               <div>
-                <label className="text-[11px] font-bold text-zinc-400 uppercase">Author (Optional)</label>
+                <label className="text-[11px] font-bold text-zinc-400 uppercase">Upphovsperson (valfritt)</label>
                 <input
                   type="text"
                   value={builderAuthor}
                   onChange={(e) => setBuilderAuthor(e.target.value)}
-                  placeholder="Your name"
+                  placeholder="Ditt namn"
                   className="w-full bg-zinc-950 border border-zinc-700/80 rounded-xl px-3 py-2 text-xs text-zinc-100 focus:outline-none focus:border-amber-400 mt-1"
                 />
               </div>
@@ -454,19 +454,19 @@ export default function ScriptsView({
             <div className="grid grid-cols-4 gap-2 pt-2 border-t border-zinc-800 text-center text-xs">
               <div className="bg-blue-950/40 p-2 rounded-xl border border-blue-600/30">
                 <div className="font-black text-blue-400">{builderCounts.townsfolk} / 13</div>
-                <div className="text-[10px] text-zinc-400 font-semibold uppercase">Townsfolk</div>
+                <div className="text-[10px] text-zinc-400 font-semibold uppercase">Stadsbor</div>
               </div>
               <div className="bg-cyan-950/40 p-2 rounded-xl border border-cyan-600/30">
                 <div className="font-black text-cyan-400">{builderCounts.outsider} / 4</div>
-                <div className="text-[10px] text-zinc-400 font-semibold uppercase">Outsiders</div>
+                <div className="text-[10px] text-zinc-400 font-semibold uppercase">Utbölingar</div>
               </div>
               <div className="bg-orange-950/40 p-2 rounded-xl border border-orange-600/30">
                 <div className="font-black text-orange-400">{builderCounts.minion} / 4</div>
-                <div className="text-[10px] text-zinc-400 font-semibold uppercase">Minions</div>
+                <div className="text-[10px] text-zinc-400 font-semibold uppercase">Hantlangare</div>
               </div>
               <div className="bg-red-950/40 p-2 rounded-xl border border-red-600/30">
                 <div className="font-black text-red-400">{builderCounts.demon} / 1-4</div>
-                <div className="text-[10px] text-zinc-400 font-semibold uppercase">Demons</div>
+                <div className="text-[10px] text-zinc-400 font-semibold uppercase">Demoner</div>
               </div>
             </div>
 
@@ -475,7 +475,7 @@ export default function ScriptsView({
                 onClick={handleSaveBuiltScript}
                 className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-xs transition-all shadow-md"
               >
-                Save Custom Script ({builderSelectedRoles.length} roles) 💾
+                Spara eget skript ({builderSelectedRoles.length} roller) 💾
               </button>
               <button
                 onClick={() => {
@@ -484,7 +484,7 @@ export default function ScriptsView({
                 disabled={builderSelectedRoles.length < 5}
                 className="px-4 py-2.5 bg-zinc-800 hover:bg-zinc-750 border border-zinc-700 text-zinc-200 font-bold rounded-xl text-xs transition-colors disabled:opacity-50"
               >
-                Play Now ➔
+                Spela nu ➔
               </button>
             </div>
           </div>
@@ -492,11 +492,11 @@ export default function ScriptsView({
           {/* Builder Filter Buttons */}
           <div className="flex gap-1.5 overflow-x-auto pb-1">
             {[
-              { id: 'all', label: 'All' },
-              { id: 'townsfolk', label: 'Townsfolk 🧺' },
-              { id: 'outsider', label: 'Outsiders 🍺' },
-              { id: 'minion', label: 'Minions 🧪' },
-              { id: 'demon', label: 'Demons 😈' },
+              { id: 'all', label: 'Alla' },
+              { id: 'townsfolk', label: 'Stadsbor 🧺' },
+              { id: 'outsider', label: 'Utbölingar 🍺' },
+              { id: 'minion', label: 'Hantlangare 🧪' },
+              { id: 'demon', label: 'Demoner 😈' },
             ].map((t) => (
               <button
                 key={t.id}
@@ -519,7 +519,7 @@ export default function ScriptsView({
               return (
                 <div key={teamKey} className="space-y-2">
                   <h3 className="text-xs font-bold uppercase text-zinc-400 tracking-wider">
-                    {teamKey}
+                    {TEAM_NAMES[teamKey] || teamKey}
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {roles.map((r) => {
@@ -562,7 +562,7 @@ export default function ScriptsView({
       {activeSubTab === 'saved' && (
         <div className="space-y-3">
           <p className="text-xs text-zinc-400">
-            Your customized and imported scripts saved in browser memory.
+            Dina egna och importerade skript, sparade i webbläsaren.
           </p>
 
           {customScripts.length > 0 ? (
@@ -579,21 +579,21 @@ export default function ScriptsView({
                         <h3 className="text-sm font-bold text-zinc-100">{script.name}</h3>
                         {isCurrent && (
                           <span className="text-[10px] font-bold bg-amber-500 text-zinc-950 px-2 py-0.5 rounded-full">
-                            Active
+                            Aktivt
                           </span>
                         )}
                       </div>
                       <p className="text-xs text-zinc-400 mt-0.5">
-                        {script.author ? `By ${script.author} • ` : ''}
-                        {script.roles.length} roles
-                        {script.createdAt ? ` • Created ${new Date(script.createdAt).toLocaleDateString()}` : ''}
+                        {script.author ? `Av ${script.author} • ` : ''}
+                        {script.roles.length} roller
+                        {script.createdAt ? ` • Skapat ${new Date(script.createdAt).toLocaleDateString()}` : ''}
                       </p>
                     </div>
 
                     <button
                       onClick={() => onDeleteCustomScript(script.id)}
                       className="text-zinc-500 hover:text-red-400 text-xs p-1"
-                      title="Delete script"
+                      title="Radera skript"
                     >
                       🗑️
                     </button>
@@ -614,7 +614,7 @@ export default function ScriptsView({
                     })}
                     {script.roles.length > 8 && (
                       <span className="text-[11px] bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded">
-                        +{script.roles.length - 8} more
+                        +{script.roles.length - 8} till
                       </span>
                     )}
                   </div>
@@ -634,7 +634,7 @@ export default function ScriptsView({
                       className="text-xs text-zinc-400 hover:text-zinc-200 flex items-center gap-1"
                     >
                       <span>📥</span>
-                      <span>Export JSON</span>
+                      <span>Exportera JSON</span>
                     </button>
 
                     <button
@@ -646,7 +646,7 @@ export default function ScriptsView({
                           : 'bg-amber-500 hover:bg-amber-400 text-zinc-950 shadow-md'
                       }`}
                     >
-                      {isCurrent ? 'Active' : 'Play with Script ➔'}
+                      {isCurrent ? 'Aktivt' : 'Spela med skriptet ➔'}
                     </button>
                   </div>
                 </div>
@@ -655,15 +655,15 @@ export default function ScriptsView({
           ) : (
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 text-center space-y-2">
               <div className="text-3xl">📁</div>
-              <p className="text-sm font-semibold text-zinc-300">No custom scripts yet</p>
+              <p className="text-sm font-semibold text-zinc-300">Inga egna skript än</p>
               <p className="text-xs text-zinc-500">
-                You can import a script from the web or build your own in the Builder tab.
+                Du kan importera ett skript från webben eller bygga ett eget under fliken Bygg.
               </p>
               <button
                 onClick={() => setActiveSubTab('builder')}
                 className="mt-2 px-4 py-2 bg-amber-500 text-zinc-950 font-bold rounded-xl text-xs"
               >
-                Open Script Builder 🛠️
+                Öppna skriptbyggaren 🛠️
               </button>
             </div>
           )}

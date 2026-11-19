@@ -3,44 +3,44 @@ import { BookOpen, FileText, Search, X, Eye } from 'lucide-react';
 import { getAllRoles, EDITIONS } from '../data/roles';
 
 const TEAM_LABELS = {
-  all: { label: 'All Teams', badge: 'bg-zinc-800/80 text-zinc-300 border-zinc-700/60' },
-  townsfolk: { label: 'Townsfolk', badge: 'bg-blue-950/50 text-blue-300 border-blue-900/50' },
-  outsider: { label: 'Outsiders', badge: 'bg-cyan-950/50 text-cyan-300 border-cyan-900/50' },
-  minion: { label: 'Minions', badge: 'bg-orange-950/50 text-orange-300 border-orange-900/50' },
-  demon: { label: 'Demons', badge: 'bg-rose-950/50 text-rose-300 border-rose-900/50' },
-  traveller: { label: 'Travellers', badge: 'bg-purple-950/50 text-purple-300 border-purple-900/50' },
+  all: { label: 'Alla lag', badge: 'bg-zinc-800/80 text-zinc-300 border-zinc-700/60' },
+  townsfolk: { label: 'Stadsbor', badge: 'bg-blue-950/50 text-blue-300 border-blue-900/50' },
+  outsider: { label: 'Utbölingar', badge: 'bg-cyan-950/50 text-cyan-300 border-cyan-900/50' },
+  minion: { label: 'Hantlangare', badge: 'bg-orange-950/50 text-orange-300 border-orange-900/50' },
+  demon: { label: 'Demoner', badge: 'bg-rose-950/50 text-rose-300 border-rose-900/50' },
+  traveller: { label: 'Resenärer', badge: 'bg-purple-950/50 text-purple-300 border-purple-900/50' },
 };
 
 const GLOSSARY_RULES = [
   {
-    term: 'Drunk & Poisoned (Droisoned)',
+    term: 'Berusad & förgiftad',
     icon: '🍺',
-    desc: 'A drunk or poisoned player has NO ability, but believes they do. The Storyteller may give them false or true information at will. If an ability causes death, it fails.',
+    desc: 'En berusad eller förgiftad spelare har INGEN förmåga, men tror att den har det. Berättaren får ge falsk eller sann information efter eget val. Om förmågan skulle orsaka ett dödsfall misslyckas den.',
   },
   {
-    term: 'Madness',
+    term: 'Galenskap',
     icon: '🧠',
-    desc: 'A player who is "mad" about something is attempting to convince the group that it is true. If they break madness or are not sincere, the Storyteller may execute them or inflict the penalty.',
+    desc: 'En spelare som är "galen" över något försöker övertyga gruppen om att det är sant. Om spelaren bryter galenskapen eller inte är uppriktig får berättaren avrätta den eller utdela straffet.',
   },
   {
-    term: 'Dead Votes (Ghost Tokens)',
+    term: 'Döda spelares röster (spökröster)',
     icon: '👻',
-    desc: 'Dead players may still participate in discussions freely. Each dead player has exactly ONE ghost vote token for the remainder of the game. Once spent, they cannot vote again.',
+    desc: 'Döda spelare får fortfarande delta fritt i diskussionerna. Varje död spelare har exakt EN spökröst kvar resten av spelet. När den är använd kan spelaren inte rösta igen.',
   },
   {
-    term: 'Travellers',
+    term: 'Resenärer',
     icon: '🧳',
-    desc: 'Travellers arrive late or leave early. They do not count toward player count for Evil/Good ratio or majority execution math. They can be exiled by a simple majority vote without ending the day.',
+    desc: 'Resenärer kommer sent eller går tidigt. De räknas inte in i antalet spelare för fördelningen mellan gott och ont eller för majoriteten vid avrättning. De kan förvisas med enkel majoritet utan att dagen tar slut.',
   },
   {
-    term: 'Alive Neighbours',
+    term: 'Levande grannar',
     icon: '👥',
-    desc: 'Dead players are skipped when checking "alive neighbours" (e.g. for Empath, Tea Lady, Chef, No Dashii). The circle closes over dead corpses.',
+    desc: 'Döda spelare hoppas över när man räknar "levande grannar" (t.ex. för Empat, Tedam, Kock, No Dashii). Cirkeln sluts över de döda.',
   },
   {
-    term: 'Night Order & First Night',
+    term: 'Nattordning & första natten',
     icon: '🌙',
-    desc: 'Minions and Demons learn each other on Night 1 (except in Sects & Violets or when Poppy Grower is in play). Demon kills occur from Night 2 onwards (asterisked abilities).',
+    desc: 'Hantlangare och demoner får veta vilka de andra är natt 1 (utom i Sects & Violets eller när Vallmoodlaren är i spel). Demonen dödar från natt 2 och framåt (förmågor markerade med asterisk).',
   },
 ];
 
@@ -83,15 +83,15 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
           <div className="flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-zinc-300" />
             <h1 className="text-lg sm:text-xl font-black text-zinc-100 tracking-tight">
-              Compendium Reference
+              Kompendium
             </h1>
           </div>
           <span className="text-xs font-medium text-zinc-300 bg-zinc-800 px-2.5 py-0.5 rounded-full border border-zinc-700">
-            {allRoles.length} Characters
+            {allRoles.length} Karaktärer
           </span>
         </div>
         <p className="text-xs text-zinc-400">
-          Official character encyclopedia, rule clarifications, and Big Text inspection.
+          Alla officiella karaktärer, regelförtydliganden och visning med stor text.
         </p>
       </div>
 
@@ -106,7 +106,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
           }`}
         >
           <BookOpen className="w-3.5 h-3.5" />
-          <span>Characters</span>
+          <span>Karaktärer</span>
         </button>
         <button
           onClick={() => setActiveSubTab('rules')}
@@ -117,7 +117,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
           }`}
         >
           <FileText className="w-3.5 h-3.5" />
-          <span>Rules & Glossary</span>
+          <span>Regler & ordlista</span>
         </button>
       </div>
 
@@ -131,7 +131,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by character or ability (e.g. poison, executed, neighbor)..."
+              placeholder="Sök på karaktär eller förmåga (t.ex. förgift, avrätta, granne)..."
               className="w-full bg-zinc-900 border border-zinc-800 rounded-xl pl-10 pr-9 py-2.5 text-xs sm:text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-zinc-600 transition-colors"
             />
             {searchQuery && (
@@ -147,7 +147,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
           {/* Team Filter Pills (No emojis) */}
           <div className="space-y-1.5">
             <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
-              Filter by Team
+              Filtrera på lag
             </span>
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
               {Object.entries(TEAM_LABELS).map(([k, v]) => {
@@ -172,7 +172,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
           {/* Edition Filter Pills */}
           <div className="space-y-1.5">
             <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
-              Filter by Edition
+              Filtrera på utgåva
             </span>
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
               {Object.entries(EDITIONS).map(([k, v]) => {
@@ -197,7 +197,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
           {/* Active Filter Count Status */}
           <div className="flex items-center justify-between text-xs text-zinc-400 px-1 pt-1">
             <span>
-              Showing <strong className="text-zinc-200">{filteredRoles.length}</strong> of {allRoles.length} roles
+              Visar <strong className="text-zinc-200">{filteredRoles.length}</strong> av {allRoles.length} roller
             </span>
             {(searchQuery || selectedTeam !== 'all' || selectedEdition !== 'all') && (
               <button
@@ -208,7 +208,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
                 }}
                 className="text-zinc-400 hover:text-zinc-200 hover:underline text-[11px] font-medium"
               >
-                Reset all filters
+                Rensa alla filter
               </button>
             )}
           </div>
@@ -218,7 +218,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {filteredRoles.map((role) => {
                 const teamStyle = TEAM_LABELS[role.team] || TEAM_LABELS.all;
-                const editionInfo = EDITIONS[role.edition] || { label: 'Custom' };
+                const editionInfo = EDITIONS[role.edition] || { label: 'Egen' };
 
                 return (
                   <div
@@ -252,7 +252,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
 
                       {/* Ability text */}
                       <p className="text-xs text-zinc-300 leading-relaxed bg-zinc-950/60 p-2.5 rounded-xl border border-zinc-800/60">
-                        {role.ability || 'No official description provided.'}
+                        {role.ability || 'Ingen officiell beskrivning finns.'}
                       </p>
                     </div>
 
@@ -268,10 +268,10 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
                           })
                         }
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 hover:border-zinc-700 rounded-lg text-xs font-medium transition-colors shadow-sm active:scale-95"
-                        title="Display card in fullscreen mode to show a player silently"
+                        title="Visa kortet i helskärm för att tyst visa det för en spelare"
                       >
                         <Eye className="w-3.5 h-3.5 text-zinc-400" />
-                        <span>Show to Player</span>
+                        <span>Visa för spelare</span>
                       </button>
                     </div>
                   </div>
@@ -281,9 +281,9 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
           ) : (
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 text-center space-y-3">
               <Search className="w-8 h-8 text-zinc-600 mx-auto" />
-              <p className="text-sm text-zinc-300 font-semibold">No characters found</p>
+              <p className="text-sm text-zinc-300 font-semibold">Inga karaktärer hittades</p>
               <p className="text-xs text-zinc-500">
-                No roles matched your search criteria "{searchQuery}". Try a different keyword or reset filters.
+                Inga roller matchade sökningen "{searchQuery}". Prova ett annat sökord eller rensa filtren.
               </p>
               <button
                 onClick={() => {
@@ -293,7 +293,7 @@ export default function CompendiumView({ onShowRoleFullscreen }) {
                 }}
                 className="px-4 py-2 bg-zinc-800 text-zinc-200 text-xs font-bold rounded-xl border border-zinc-700 hover:bg-zinc-700 transition-colors"
               >
-                Clear Filters
+                Rensa filter
               </button>
             </div>
           )}

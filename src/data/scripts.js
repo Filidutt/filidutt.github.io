@@ -4,9 +4,9 @@ export const SCRIPT_PRESETS = {
   trouble_brewing: {
     id: 'trouble_brewing',
     name: 'Trouble Brewing',
-    edition: 'Official Core',
+    edition: 'Officiell grundutgåva',
     color: 'crimson',
-    description: 'The quintessential Blood on the Clocktower experience. Perfect for both beginners and veterans.',
+    description: 'Den klassiska Blood on the Clocktower-upplevelsen. Perfekt för både nybörjare och veteraner.',
     roles: [
       'washerwoman', 'librarian', 'investigator', 'chef', 'empath',
       'fortuneteller', 'undertaker', 'monk', 'ravenkeeper', 'virgin',
@@ -19,9 +19,9 @@ export const SCRIPT_PRESETS = {
   bad_moon_rising: {
     id: 'bad_moon_rising',
     name: 'Bad Moon Rising',
-    edition: 'Official Core',
+    edition: 'Officiell grundutgåva',
     color: 'amber',
-    description: 'A deadly script filled with protection, resurrection, execution prevention, and multiple night deaths.',
+    description: 'Ett dödligt skript fyllt av skydd, återuppståndelse, avvärjda avrättningar och flera dödsfall per natt.',
     roles: [
       'grandmother', 'sailor', 'chambermaid', 'exorcist', 'innkeeper',
       'gambler', 'gossip', 'courtier', 'professor', 'minstrel',
@@ -34,9 +34,9 @@ export const SCRIPT_PRESETS = {
   sects_and_violets: {
     id: 'sects_and_violets',
     name: 'Sects & Violets',
-    edition: 'Official Core',
+    edition: 'Officiell grundutgåva',
     color: 'purple',
-    description: 'A wild script of information, madness, changing alignments, and reality-altering abilities.',
+    description: 'Ett vilt skript med information, galenskap, byten av lagtillhörighet och verklighetsförändrande förmågor.',
     roles: [
       'clockmaker', 'dreamer', 'snakecharmer', 'mathematician', 'flowergirl',
       'towncrier', 'oracle', 'savant', 'seamstress', 'philosopher',
@@ -56,10 +56,10 @@ export function parseScriptJson(jsonStringOrObject) {
   try {
     const data = typeof jsonStringOrObject === 'string' ? JSON.parse(jsonStringOrObject) : jsonStringOrObject;
     if (!Array.isArray(data)) {
-      throw new Error('Script JSON must be an array of characters or objects.');
+      throw new Error('Skript-JSON måste vara en lista med karaktärer eller objekt.');
     }
 
-    let scriptName = 'Custom Script';
+    let scriptName = 'Eget skript';
     let author = '';
     const roles = [];
 
@@ -79,7 +79,7 @@ export function parseScriptJson(jsonStringOrObject) {
     });
 
     if (roles.length === 0) {
-      throw new Error('No valid character IDs found in this script.');
+      throw new Error('Inga giltiga karaktärs-ID:n hittades i skriptet.');
     }
 
     // Deduplicate while preserving order
@@ -92,7 +92,7 @@ export function parseScriptJson(jsonStringOrObject) {
     };
   } catch (err) {
     return {
-      error: err.message || 'Invalid script JSON format',
+      error: err.message || 'Ogiltigt skript-JSON-format',
     };
   }
 }

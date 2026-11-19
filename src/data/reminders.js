@@ -4,85 +4,85 @@
 export const ROLE_REMINDERS_DB = {
   // === Trouble Brewing ===
   washerwoman: [
-    { id: 'washerwoman_townsfolk', role: 'washerwoman', label: 'Townsfolk', icon: '🧺' },
-    { id: 'washerwoman_wrong', role: 'washerwoman', label: 'Wrong', icon: '🧺' },
+    { id: 'washerwoman_townsfolk', role: 'washerwoman', label: 'Stadsbo', icon: '🧺' },
+    { id: 'washerwoman_wrong', role: 'washerwoman', label: 'Fel', icon: '🧺' },
   ],
   librarian: [
-    { id: 'librarian_outsider', role: 'librarian', label: 'Outsider', icon: '📚' },
-    { id: 'librarian_wrong', role: 'librarian', label: 'Wrong', icon: '📚' },
+    { id: 'librarian_outsider', role: 'librarian', label: 'Utböling', icon: '📚' },
+    { id: 'librarian_wrong', role: 'librarian', label: 'Fel', icon: '📚' },
   ],
   investigator: [
-    { id: 'investigator_minion', role: 'investigator', label: 'Minion', icon: '🔍' },
-    { id: 'investigator_wrong', role: 'investigator', label: 'Wrong', icon: '🔍' },
+    { id: 'investigator_minion', role: 'investigator', label: 'Hantlangare', icon: '🔍' },
+    { id: 'investigator_wrong', role: 'investigator', label: 'Fel', icon: '🔍' },
   ],
   fortuneteller: [
-    { id: 'fortuneteller_red_herring', role: 'fortuneteller', label: 'Red herring', icon: '🔮' },
+    { id: 'fortuneteller_red_herring', role: 'fortuneteller', label: 'Falsk demon', icon: '🔮' },
   ],
   undertaker: [
-    { id: 'undertaker_died_today', role: 'undertaker', label: 'Died today', icon: '⚰️' },
+    { id: 'undertaker_died_today', role: 'undertaker', label: 'Dog i dag', icon: '⚰️' },
   ],
   monk: [
-    { id: 'monk_safe', role: 'monk', label: 'Safe', icon: '🛡️' },
+    { id: 'monk_safe', role: 'monk', label: 'Skyddad', icon: '🛡️' },
   ],
   ravenkeeper: [
-    { id: 'ravenkeeper_died_today', role: 'ravenkeeper', label: 'Died today', icon: '🦅' },
+    { id: 'ravenkeeper_died_today', role: 'ravenkeeper', label: 'Dog i dag', icon: '🦅' },
   ],
   virgin: [
-    { id: 'virgin_no_ability', role: 'virgin', label: 'No ability', icon: '🕊️' },
+    { id: 'virgin_no_ability', role: 'virgin', label: 'Ingen förmåga', icon: '🕊️' },
   ],
   slayer: [
-    { id: 'slayer_no_ability', role: 'slayer', label: 'No ability', icon: '🏹' },
+    { id: 'slayer_no_ability', role: 'slayer', label: 'Ingen förmåga', icon: '🏹' },
   ],
   butler: [
-    { id: 'butler_master', role: 'butler', label: 'Master', icon: '🛎️' },
+    { id: 'butler_master', role: 'butler', label: 'Husbonde', icon: '🛎️' },
   ],
   drunk: [
-    { id: 'drunk_drunk', role: 'drunk', label: 'Drunk', icon: '🍺' },
+    { id: 'drunk_drunk', role: 'drunk', label: 'Berusad', icon: '🍺' },
   ],
   poisoner: [
-    { id: 'poisoner_poisoned', role: 'poisoner', label: 'Poisoned', icon: '🧪' },
+    { id: 'poisoner_poisoned', role: 'poisoner', label: 'Förgiftad', icon: '🧪' },
   ],
   scarletwoman: [
-    { id: 'scarletwoman_demon', role: 'scarletwoman', label: 'Is the Demon', icon: '💃' },
+    { id: 'scarletwoman_demon', role: 'scarletwoman', label: 'Är demonen', icon: '💃' },
   ],
 
   // === Bad Moon Rising ===
   grandmother: [
-    { id: 'grandmother_grandchild', role: 'grandmother', label: 'Grandchild', icon: '👵' },
+    { id: 'grandmother_grandchild', role: 'grandmother', label: 'Barnbarn', icon: '👵' },
   ],
   sailor: [
-    { id: 'sailor_drunk', role: 'sailor', label: 'Drunk', icon: '⚓' },
+    { id: 'sailor_drunk', role: 'sailor', label: 'Berusad', icon: '⚓' },
   ],
   exorcist: [
-    { id: 'exorcist_chosen', role: 'exorcist', label: 'Chosen', icon: '✝️' },
+    { id: 'exorcist_chosen', role: 'exorcist', label: 'Vald', icon: '✝️' },
   ],
   innkeeper: [
-    { id: 'innkeeper_safe', role: 'innkeeper', label: 'Safe', icon: '🍺' },
-    { id: 'innkeeper_drunk', role: 'innkeeper', label: 'Drunk', icon: '🍺' },
+    { id: 'innkeeper_safe', role: 'innkeeper', label: 'Skyddad', icon: '🍺' },
+    { id: 'innkeeper_drunk', role: 'innkeeper', label: 'Berusad', icon: '🍺' },
   ],
   gambler: [
-    { id: 'gambler_dead', role: 'gambler', label: 'Dead', icon: '🎲' },
+    { id: 'gambler_dead', role: 'gambler', label: 'Död', icon: '🎲' },
   ],
   gossip: [
-    { id: 'gossip_dead', role: 'gossip', label: 'Dead', icon: '🗣️' },
+    { id: 'gossip_dead', role: 'gossip', label: 'Död', icon: '🗣️' },
   ],
   courtier: [
-    { id: 'courtier_drunk_1', role: 'courtier', label: 'Drunk 1', icon: '👑' },
-    { id: 'courtier_drunk_2', role: 'courtier', label: 'Drunk 2', icon: '👑' },
-    { id: 'courtier_drunk_3', role: 'courtier', label: 'Drunk 3', icon: '👑' },
+    { id: 'courtier_drunk_1', role: 'courtier', label: 'Berusad 1', icon: '👑' },
+    { id: 'courtier_drunk_2', role: 'courtier', label: 'Berusad 2', icon: '👑' },
+    { id: 'courtier_drunk_3', role: 'courtier', label: 'Berusad 3', icon: '👑' },
   ],
   professor: [
-    { id: 'professor_alive', role: 'professor', label: 'Alive', icon: '🎓' },
-    { id: 'professor_no_ability', role: 'professor', label: 'No ability', icon: '🎓' },
+    { id: 'professor_alive', role: 'professor', label: 'Levande', icon: '🎓' },
+    { id: 'professor_no_ability', role: 'professor', label: 'Ingen förmåga', icon: '🎓' },
   ],
   minstrel: [
-    { id: 'minstrel_everyone_drunk', role: 'minstrel', label: 'Everyone drunk', icon: '🪕' },
+    { id: 'minstrel_everyone_drunk', role: 'minstrel', label: 'Alla berusade', icon: '🪕' },
   ],
   fool: [
-    { id: 'fool_no_ability', role: 'fool', label: 'No ability', icon: '🃏' },
+    { id: 'fool_no_ability', role: 'fool', label: 'Ingen förmåga', icon: '🃏' },
   ],
   goon: [
-    { id: 'goon_drunk', role: 'goon', label: 'Drunk', icon: '🥊' },
+    { id: 'goon_drunk', role: 'goon', label: 'Berusad', icon: '🥊' },
   ],
   lunatic: [
     { id: 'lunatic_attack_1', role: 'lunatic', label: 'Attack 1', icon: '🤪' },
@@ -90,117 +90,117 @@ export const ROLE_REMINDERS_DB = {
     { id: 'lunatic_attack_3', role: 'lunatic', label: 'Attack 3', icon: '🤪' },
   ],
   tinker: [
-    { id: 'tinker_dead', role: 'tinker', label: 'Dead', icon: '🔧' },
+    { id: 'tinker_dead', role: 'tinker', label: 'Död', icon: '🔧' },
   ],
   moonchild: [
-    { id: 'moonchild_dead', role: 'moonchild', label: 'Dead', icon: '🌙' },
+    { id: 'moonchild_dead', role: 'moonchild', label: 'Död', icon: '🌙' },
   ],
   godfather: [
-    { id: 'godfather_died_today', role: 'godfather', label: 'Died today', icon: '🥀' },
-    { id: 'godfather_dead', role: 'godfather', label: 'Dead', icon: '🥀' },
+    { id: 'godfather_died_today', role: 'godfather', label: 'Dog i dag', icon: '🥀' },
+    { id: 'godfather_dead', role: 'godfather', label: 'Död', icon: '🥀' },
   ],
   devilsadvocate: [
-    { id: 'devilsadvocate_survives', role: 'devilsadvocate', label: 'Survives execution', icon: '📜' },
+    { id: 'devilsadvocate_survives', role: 'devilsadvocate', label: 'Överlever avrättning', icon: '📜' },
   ],
   assassin: [
-    { id: 'assassin_dead', role: 'assassin', label: 'Dead', icon: '🗡️' },
-    { id: 'assassin_no_ability', role: 'assassin', label: 'No ability', icon: '🗡️' },
+    { id: 'assassin_dead', role: 'assassin', label: 'Död', icon: '🗡️' },
+    { id: 'assassin_no_ability', role: 'assassin', label: 'Ingen förmåga', icon: '🗡️' },
   ],
   zombuul: [
-    { id: 'zombuul_died_today', role: 'zombuul', label: 'Died today', icon: '🧟' },
+    { id: 'zombuul_died_today', role: 'zombuul', label: 'Dog i dag', icon: '🧟' },
   ],
   pukka: [
-    { id: 'pukka_poisoned_1', role: 'pukka', label: 'Poisoned 1', icon: '🪱' },
-    { id: 'pukka_poisoned_2', role: 'pukka', label: 'Poisoned 2', icon: '🪱' },
-    { id: 'pukka_dead', role: 'pukka', label: 'Dead', icon: '🪱' },
+    { id: 'pukka_poisoned_1', role: 'pukka', label: 'Förgiftad 1', icon: '🪱' },
+    { id: 'pukka_poisoned_2', role: 'pukka', label: 'Förgiftad 2', icon: '🪱' },
+    { id: 'pukka_dead', role: 'pukka', label: 'Död', icon: '🪱' },
   ],
   shabaloth: [
-    { id: 'shabaloth_alive', role: 'shabaloth', label: 'Alive', icon: '🐊' },
-    { id: 'shabaloth_dead', role: 'shabaloth', label: 'Dead', icon: '🐊' },
+    { id: 'shabaloth_alive', role: 'shabaloth', label: 'Levande', icon: '🐊' },
+    { id: 'shabaloth_dead', role: 'shabaloth', label: 'Död', icon: '🐊' },
   ],
   po: [
-    { id: 'po_3_attacks', role: 'po', label: '3 attacks', icon: '💨' },
+    { id: 'po_3_attacks', role: 'po', label: '3 attacker', icon: '💨' },
   ],
 
   // === Sects & Violets ===
   snakecharmer: [
-    { id: 'snakecharmer_poisoned', role: 'snakecharmer', label: 'Poisoned', icon: '🐍' },
+    { id: 'snakecharmer_poisoned', role: 'snakecharmer', label: 'Förgiftad', icon: '🐍' },
   ],
   mathematician: [
-    { id: 'mathematician_abnormal', role: 'mathematician', label: 'Abnormal', icon: '➗' },
+    { id: 'mathematician_abnormal', role: 'mathematician', label: 'Onormal', icon: '➗' },
   ],
   flowergirl: [
-    { id: 'flowergirl_demon_voted', role: 'flowergirl', label: 'Demon voted', icon: '🌸' },
+    { id: 'flowergirl_demon_voted', role: 'flowergirl', label: 'Demonen röstade', icon: '🌸' },
   ],
   towncrier: [
-    { id: 'towncrier_minions_voted', role: 'towncrier', label: 'Minions voted', icon: '📢' },
+    { id: 'towncrier_minions_voted', role: 'towncrier', label: 'Hantlangare röstade', icon: '📢' },
   ],
   seamstress: [
-    { id: 'seamstress_no_ability', role: 'seamstress', label: 'No ability', icon: '🧵' },
+    { id: 'seamstress_no_ability', role: 'seamstress', label: 'Ingen förmåga', icon: '🧵' },
   ],
   philosopher: [
-    { id: 'philosopher_drunk', role: 'philosopher', label: 'Drunk', icon: '🏛️' },
-    { id: 'philosopher_is_char', role: 'philosopher', label: 'Is Character', icon: '🏛️' },
+    { id: 'philosopher_drunk', role: 'philosopher', label: 'Berusad', icon: '🏛️' },
+    { id: 'philosopher_is_char', role: 'philosopher', label: 'Är karaktären', icon: '🏛️' },
   ],
   artist: [
-    { id: 'artist_no_ability', role: 'artist', label: 'No ability', icon: '🎨' },
+    { id: 'artist_no_ability', role: 'artist', label: 'Ingen förmåga', icon: '🎨' },
   ],
   sweetheart: [
-    { id: 'sweetheart_drunk', role: 'sweetheart', label: 'Drunk', icon: '💔' },
+    { id: 'sweetheart_drunk', role: 'sweetheart', label: 'Berusad', icon: '💔' },
   ],
   barber: [
-    { id: 'barber_haircut', role: 'barber', label: 'Haircut', icon: '💈' },
+    { id: 'barber_haircut', role: 'barber', label: 'Klippning', icon: '💈' },
   ],
   eviltwin: [
-    { id: 'eviltwin_twin', role: 'eviltwin', label: 'Twin', icon: '♊' },
+    { id: 'eviltwin_twin', role: 'eviltwin', label: 'Tvilling', icon: '♊' },
   ],
   witch: [
-    { id: 'witch_cursed', role: 'witch', label: 'Cursed', icon: '🧙' },
+    { id: 'witch_cursed', role: 'witch', label: 'Förbannad', icon: '🧙' },
   ],
   cerenovus: [
-    { id: 'cerenovus_mad', role: 'cerenovus', label: 'Mad', icon: '🧠' },
+    { id: 'cerenovus_mad', role: 'cerenovus', label: 'Galen', icon: '🧠' },
   ],
   pithag: [
-    { id: 'pithag_transformed', role: 'pithag', label: 'Transformed', icon: '🧙‍♀️' },
+    { id: 'pithag_transformed', role: 'pithag', label: 'Förvandlad', icon: '🧙‍♀️' },
   ],
   fanggu: [
-    { id: 'fanggu_once', role: 'fanggu', label: 'Once', icon: '🐒' },
+    { id: 'fanggu_once', role: 'fanggu', label: 'En gång', icon: '🐒' },
   ],
   vigormortis: [
-    { id: 'vigormortis_has_ability', role: 'vigormortis', label: 'Has ability', icon: '💀' },
-    { id: 'vigormortis_poisoned', role: 'vigormortis', label: 'Poisoned', icon: '💀' },
+    { id: 'vigormortis_has_ability', role: 'vigormortis', label: 'Har förmåga', icon: '💀' },
+    { id: 'vigormortis_poisoned', role: 'vigormortis', label: 'Förgiftad', icon: '💀' },
   ],
   nodashii: [
-    { id: 'nodashii_poisoned', role: 'nodashii', label: 'Poisoned', icon: '🐉' },
+    { id: 'nodashii_poisoned', role: 'nodashii', label: 'Förgiftad', icon: '🐉' },
   ],
 
   // === Travellers ===
   bureaucrat: [
-    { id: 'bureaucrat_3_votes', role: 'bureaucrat', label: '3 votes', icon: '📜' },
+    { id: 'bureaucrat_3_votes', role: 'bureaucrat', label: '3 röster', icon: '📜' },
   ],
   thief: [
-    { id: 'thief_negative_vote', role: 'thief', label: 'Negative vote', icon: '🥷' },
+    { id: 'thief_negative_vote', role: 'thief', label: 'Negativ röst', icon: '🥷' },
   ],
   bonecollector: [
-    { id: 'bonecollector_has_ability', role: 'bonecollector', label: 'Has ability', icon: '🦴' },
-    { id: 'bonecollector_no_ability', role: 'bonecollector', label: 'No ability', icon: '🦴' },
+    { id: 'bonecollector_has_ability', role: 'bonecollector', label: 'Har förmåga', icon: '🦴' },
+    { id: 'bonecollector_no_ability', role: 'bonecollector', label: 'Ingen förmåga', icon: '🦴' },
   ],
   barista: [
-    { id: 'barista_sober', role: 'barista', label: 'Sober & Healthy', icon: '☕' },
-    { id: 'barista_twice', role: 'barista', label: 'Acts twice', icon: '☕' },
+    { id: 'barista_sober', role: 'barista', label: 'Nykter & frisk', icon: '☕' },
+    { id: 'barista_twice', role: 'barista', label: 'Agerar två gånger', icon: '☕' },
   ],
   orderly: [
-    { id: 'orderly_safe', role: 'orderly', label: 'Safe', icon: '🩺' },
+    { id: 'orderly_safe', role: 'orderly', label: 'Skyddad', icon: '🩺' },
   ],
 };
 
 // Common generic reminders always available
 export const GENERIC_REMINDERS = [
-  { id: 'Poisoned', label: 'Poisoned', icon: '🧪' },
-  { id: 'Safe', label: 'Safe', icon: '🛡️' },
-  { id: 'Drunk', label: 'Drunk', icon: '🍺' },
-  { id: 'Mad', label: 'Mad', icon: '🤪' },
-  { id: 'Dead', label: 'Died Tonight', icon: '💀' },
+  { id: 'Poisoned', label: 'Förgiftad', icon: '🧪' },
+  { id: 'Safe', label: 'Skyddad', icon: '🛡️' },
+  { id: 'Drunk', label: 'Berusad', icon: '🍺' },
+  { id: 'Mad', label: 'Galen', icon: '🤪' },
+  { id: 'Dead', label: 'Dog i natt', icon: '💀' },
 ];
 
 /**

@@ -22,7 +22,7 @@ export default function GameStateModal({
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
-    setSuccessMessage('Game state exported to file!');
+    setSuccessMessage('Spelet exporterades till fil!');
   };
 
   const handleFileImport = (e) => {
@@ -36,10 +36,10 @@ export default function GameStateModal({
       try {
         const json = JSON.parse(ev.target.result);
         onImportState(json);
-        setSuccessMessage('Game state successfully imported!');
+        setSuccessMessage('Spelet importerades!');
         setTimeout(onClose, 800);
       } catch (err) {
-        setErrorMessage('Failed to read JSON: ' + (err.message || 'Invalid format'));
+        setErrorMessage('Kunde inte läsa JSON: ' + (err.message || 'Ogiltigt format'));
       }
     };
     reader.readAsText(file);
@@ -53,10 +53,10 @@ export default function GameStateModal({
     try {
       const json = JSON.parse(importText.trim());
       onImportState(json);
-      setSuccessMessage('Game state successfully imported!');
+      setSuccessMessage('Spelet importerades!');
       setTimeout(onClose, 800);
     } catch (err) {
-      setErrorMessage('Invalid JSON text: ' + (err.message || 'Parse error'));
+      setErrorMessage('Ogiltig JSON-text: ' + (err.message || 'Tolkningsfel'));
     }
   };
 
@@ -73,8 +73,8 @@ export default function GameStateModal({
           <div className="flex items-center gap-2">
             <span className="text-xl">💾</span>
             <div>
-              <h2 className="text-sm font-bold text-zinc-100">Session & Game Backup</h2>
-              <p className="text-[11px] text-zinc-400">Save, restore, or reset the grimoire</p>
+              <h2 className="text-sm font-bold text-zinc-100">Säkerhetskopia av spelet</h2>
+              <p className="text-[11px] text-zinc-400">Spara, återställ eller rensa grimoiren</p>
             </div>
           </div>
           <button
@@ -99,25 +99,25 @@ export default function GameStateModal({
 
         {/* Export Button */}
         <div className="p-3.5 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
-          <span className="text-xs font-bold text-zinc-300 block">Export Game State</span>
+          <span className="text-xs font-bold text-zinc-300 block">Exportera spelet</span>
           <p className="text-[11px] text-zinc-400">
-            Downloads a JSON snapshot of current seats, assignments, dead status, and bag.
+            Laddar ner en JSON-ögonblicksbild av platser, tilldelningar, döda spelare och påse.
           </p>
           <button
             onClick={handleExport}
             className="w-full py-2.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-100 font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-colors"
           >
             <span>📥</span>
-            <span>Download Backup (.json)</span>
+            <span>Ladda ner säkerhetskopia (.json)</span>
           </button>
         </div>
 
         {/* Import Option */}
         <div className="p-3.5 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2.5">
-          <span className="text-xs font-bold text-zinc-300 block">Restore Game State</span>
+          <span className="text-xs font-bold text-zinc-300 block">Återställ spelet</span>
           <label className="inline-flex items-center justify-center gap-2 cursor-pointer bg-zinc-800 hover:bg-zinc-750 text-xs font-bold text-zinc-100 px-4 py-2 rounded-xl border border-zinc-700 transition-colors w-full">
             <span>📁</span>
-            <span>Upload Backup File</span>
+            <span>Ladda upp säkerhetskopia</span>
             <input
               type="file"
               accept=".json,application/json"
@@ -130,7 +130,7 @@ export default function GameStateModal({
               rows={2}
               value={importText}
               onChange={(e) => setImportText(e.target.value)}
-              placeholder="Or paste JSON backup text..."
+              placeholder="Eller klistra in säkerhetskopian som JSON-text..."
               className="w-full bg-zinc-900 border border-zinc-700 rounded-xl p-2 text-xs text-zinc-100 font-mono placeholder-zinc-600 focus:outline-none focus:border-amber-400"
             />
             {importText.trim() && (
@@ -138,7 +138,7 @@ export default function GameStateModal({
                 type="submit"
                 className="w-full py-1.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs rounded-xl shadow"
               >
-                Restore from Text
+                Återställ från text
               </button>
             )}
           </form>
@@ -146,17 +146,17 @@ export default function GameStateModal({
 
         {/* Reset Game Section */}
         <div className="pt-2 border-t border-zinc-800 flex items-center justify-between">
-          <span className="text-xs text-zinc-400">Start new game?</span>
+          <span className="text-xs text-zinc-400">Starta nytt spel?</span>
           <button
             onClick={() => {
-              if (window.confirm('Reset current game? This will clear all seats and selected bag roles.')) {
+              if (window.confirm('Återställ pågående spel? Alla platser och valda roller i påsen rensas.')) {
                 onResetGame();
                 onClose();
               }
             }}
             className="text-xs text-rose-400 hover:text-rose-300 bg-rose-950/30 border border-rose-900/50 px-3 py-1.5 rounded-xl font-bold transition-colors"
           >
-            ↺ Reset All Seats & Bag
+            ↺ Rensa alla platser & påsen
           </button>
         </div>
       </div>

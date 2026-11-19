@@ -187,7 +187,7 @@ export default function GamesView({
             }`}
           >
             <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span>Live Grimoire</span>
+            <span>Pågående grimoire</span>
           </button>
           <button
             onClick={() => setSubSection('history')}
@@ -198,7 +198,7 @@ export default function GamesView({
             }`}
           >
             <History className="w-3.5 h-3.5" />
-            <span>History ({gameHistory.length})</span>
+            <span>Historik ({gameHistory.length})</span>
           </button>
         </div>
 
@@ -207,20 +207,20 @@ export default function GamesView({
             {onOpenMessages && (
               <button
                 onClick={onOpenMessages}
-                title="Open Big Text Communicator"
+                title="Öppna stor text"
                 className="text-xs bg-zinc-800 hover:bg-zinc-750 text-zinc-300 border border-zinc-700 font-medium px-2 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-sm active:scale-95"
               >
                 <MessageSquare className="w-3.5 h-3.5 text-zinc-400" />
-                <span className="hidden sm:inline">Big Text</span>
+                <span className="hidden sm:inline">Stor text</span>
               </button>
             )}
             <button
               onClick={() => setShowFinishModal(true)}
               className="text-xs bg-rose-950/60 hover:bg-rose-900/70 text-rose-200 border border-rose-800/60 font-medium px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 shadow-sm active:scale-95"
-              title="Archive game to history and declare winner"
+              title="Spara spelet i historiken och ange vinnare"
             >
               <Flag className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Finish Game</span>
+              <span className="hidden sm:inline">Avsluta spel</span>
             </button>
           </div>
         )}
@@ -239,7 +239,7 @@ export default function GamesView({
                   : 'border-transparent text-zinc-400 hover:text-zinc-200'
               }`}
             >
-              <span>1. Bag</span>
+              <span>1. Påse</span>
               <span
                 className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
                   isBalanced
@@ -260,7 +260,7 @@ export default function GamesView({
               }`}
             >
               <CircleDot className="w-3.5 h-3.5" />
-              <span>2. Table Circle</span>
+              <span>2. Bordet</span>
               {physicalTokensInBag.length > 0 && (
                 <span className="text-[9px] px-1 rounded font-bold bg-zinc-800 text-zinc-300">
                   {usedTokens.length}/{physicalTokensInBag.length}
@@ -277,7 +277,7 @@ export default function GamesView({
               }`}
             >
               <Moon className="w-3.5 h-3.5" />
-              <span>3. Prompts</span>
+              <span>3. Kort</span>
             </button>
           </div>
 
@@ -288,10 +288,10 @@ export default function GamesView({
               <section className="bg-zinc-900/90 border border-zinc-800 rounded-2xl p-3 shadow-md space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">
-                    Player Count:
+                    Antal spelare:
                   </span>
                   <span className="text-[11px] text-zinc-500">
-                    5 to 15 players
+                    5 till 15 spelare
                   </span>
                 </div>
 
@@ -333,21 +333,21 @@ export default function GamesView({
                   <div>
                     <div className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
                       <span>🎲</span>
-                      <span>Digital Deal Ready ({bagRoles.length} roles in bag)</span>
+                      <span>Digital utdelning redo ({bagRoles.length} roller i påsen)</span>
                     </div>
                     <div className="text-[10px] text-zinc-400 mt-0.5">
-                      Randomly deal characters to all seats in 1 tap without physical bag tokens.
+                      Dela slumpmässigt ut karaktärer till alla platser med ett tryck, utan fysiska poletter.
                     </div>
                   </div>
                   <button
                     type="button"
                     onClick={() => {
                       onDigitalDeal();
-                      setCurrentLiveTab('circle');
+                      setLiveTab('table');
                     }}
                     className="shrink-0 bg-amber-500 hover:bg-amber-400 text-zinc-950 text-xs font-bold px-3 py-2 rounded-xl shadow-md transition-all active:scale-95 flex items-center gap-1.5"
                   >
-                    <span>Deal to Table</span>
+                    <span>Dela ut till bordet</span>
                     <span>➔</span>
                   </button>
                 </div>
@@ -383,7 +383,7 @@ export default function GamesView({
                             {sel && <span className={`w-2.5 h-2.5 rounded-full ${st.badge} shrink-0`} />}
                             {dis && (
                               <span className="text-[9px] font-black bg-amber-500 text-zinc-950 px-1 rounded shrink-0">
-                                DRUNK
+                                FYLLO
                               </span>
                             )}
                           </button>
@@ -402,22 +402,22 @@ export default function GamesView({
                     onClick={() => setLiveTab('table')}
                     className="w-full py-3 px-6 rounded-xl font-semibold text-sm transition-all shadow-xl flex items-center justify-center gap-2 active:scale-95 bg-amber-500 hover:bg-amber-400 text-zinc-950 shadow-amber-950/40 cursor-pointer"
                   >
-                    <span>Continue to Table Circle</span>
+                    <span>Fortsätt till bordet</span>
                     <ArrowRight className="w-4 h-4 text-zinc-950" />
                   </button>
                 ) : (
                   <div className="w-full py-2.5 px-4 rounded-xl bg-zinc-900/90 border border-zinc-800 backdrop-blur text-xs flex items-center justify-between text-zinc-400 shadow-lg">
                     <span>
                       {bagRoles.length < Number(playerCount)
-                        ? `Select ${Number(playerCount) - bagRoles.length} more role${Number(playerCount) - bagRoles.length === 1 ? '' : 's'} to fill bag (${bagRoles.length}/${playerCount})`
-                        : `Bag has ${bagRoles.length - Number(playerCount)} too many roles (${bagRoles.length}/${playerCount})`}
+                        ? `Välj ${Number(playerCount) - bagRoles.length} roll${Number(playerCount) - bagRoles.length === 1 ? '' : 'er'} till för att fylla påsen (${bagRoles.length}/${playerCount})`
+                        : `Påsen har ${bagRoles.length - Number(playerCount)} roller för mycket (${bagRoles.length}/${playerCount})`}
                     </span>
                     <button
                       type="button"
                       onClick={() => setLiveTab('table')}
                       className="text-xs text-zinc-400 hover:text-zinc-200 underline font-medium px-2 py-1 cursor-pointer"
                     >
-                      Skip to Table →
+                      Hoppa till bordet →
                     </button>
                   </div>
                 )}
@@ -432,14 +432,14 @@ export default function GamesView({
               <div className="flex items-center justify-between gap-2 mb-3 bg-zinc-900/70 border border-zinc-800 rounded-xl px-3 py-1.5 shadow-sm">
                 <div className="flex items-center gap-2">
                   <CircleDot className="w-4 h-4 text-zinc-400" />
-                  <span className="text-xs font-bold text-zinc-200">Table Circle</span>
+                  <span className="text-xs font-bold text-zinc-200">Bordet</span>
                 </div>
                 {onUndo && (
                   <button
                     type="button"
                     onClick={onUndo}
                     disabled={!canUndo}
-                    title={canUndo ? `Undo last change (${undoCount} in history)` : 'No actions to undo'}
+                    title={canUndo ? `Ångra senaste ändringen (${undoCount} i historiken)` : 'Inget att ångra'}
                     className={`px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 border shadow-sm ${
                       canUndo
                         ? 'bg-zinc-800 hover:bg-zinc-700 text-amber-300 border-zinc-600 active:scale-95 cursor-pointer'
@@ -447,7 +447,7 @@ export default function GamesView({
                     }`}
                   >
                     <RotateCcw className="w-3.5 h-3.5 text-current" />
-                    <span>Undo</span>
+                    <span>Ångra</span>
                     {undoCount > 0 && (
                       <span className="text-[10px] bg-zinc-900 text-amber-400 font-mono px-1.5 py-0.2 rounded-full border border-amber-500/30">
                         {undoCount}
@@ -464,22 +464,22 @@ export default function GamesView({
                     <div className="flex items-center gap-2">
                       <Dices className="w-4 h-4 text-zinc-400" />
                       <span className="font-bold text-zinc-200">
-                        Bag Seating: <strong className="text-amber-400">{usedTokens.length}</strong> of {physicalTokensInBag.length} seated
+                        Påsen: <strong className="text-amber-400">{usedTokens.length}</strong> av {physicalTokensInBag.length} utdelade
                       </span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <span className="text-[10px] font-bold text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-500/40">
-                        {unassignedTokens.length} unassigned
+                        {unassignedTokens.length} kvar
                       </span>
                       {unassignedTokens.length > 0 && onDigitalDeal && (
                         <button
                           type="button"
                           onClick={onDigitalDeal}
                           className="text-[10px] font-bold bg-amber-500 hover:bg-amber-400 text-zinc-950 px-2 py-0.5 rounded-lg shadow-sm transition-all active:scale-95 flex items-center gap-1 cursor-pointer"
-                          title="Randomly deal bag characters across empty seats"
+                          title="Dela slumpmässigt ut påsens karaktärer till tomma platser"
                         >
                           <Dices className="w-3 h-3 text-zinc-950" />
-                          <span>Deal</span>
+                          <span>Dela ut</span>
                         </button>
                       )}
                     </div>
@@ -487,7 +487,7 @@ export default function GamesView({
 
                   {unassignedTokens.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t border-zinc-800/80 items-center">
-                      <span className="text-[10px] text-zinc-400 uppercase font-semibold">Still in bag:</span>
+                      <span className="text-[10px] text-zinc-400 uppercase font-semibold">Kvar i påsen:</span>
                       {unassignedTokens.map((tid) => {
                         const rInfo = getRoleInfo(tid);
                         return (
@@ -510,7 +510,7 @@ export default function GamesView({
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-1.5 font-bold text-red-300">
                     <Sparkles className="w-4 h-4 text-rose-400" />
-                    <span>Demon Bluffs (3 not-in-play Good roles):</span>
+                    <span>Demonbluffar (3 goda roller som inte är i spel):</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     {availableGoodRolesForBluffs.length >= 3 && onSetDemonBluffs && (
@@ -518,10 +518,10 @@ export default function GamesView({
                         type="button"
                         onClick={handleAutoPickBluffs}
                         className="text-[10px] font-bold bg-red-950/80 hover:bg-red-900 text-red-200 border border-red-700/60 px-2 py-0.5 rounded-lg transition-colors flex items-center gap-1 shadow-sm cursor-pointer"
-                        title="Randomly pick 3 out-of-play Good roles"
+                        title="Slumpa fram 3 goda roller som inte är i spel"
                       >
                         <Dices className="w-3 h-3" />
-                        <span>Auto-Roll</span>
+                        <span>Slumpa</span>
                       </button>
                     )}
                     <button
@@ -529,7 +529,7 @@ export default function GamesView({
                       onClick={() => setShowBluffsModal(true)}
                       className="text-[10px] font-bold bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 px-2 py-0.5 rounded-lg transition-colors cursor-pointer"
                     >
-                      {demonBluffs.length === 3 ? 'Edit ▾' : '+ Select 3'}
+                      {demonBluffs.length === 3 ? 'Ändra ▾' : '+ Välj 3'}
                     </button>
                   </div>
                 </div>
@@ -548,14 +548,14 @@ export default function GamesView({
                               onShowToPlayer &&
                               onShowToPlayer({
                                 title: r.name,
-                                subtitle: 'Demon Bluff (Not in play)',
+                                subtitle: 'Demonbluff (inte i spel)',
                                 icon: r.icon,
                                 description: r.ability,
-                                teamLabel: r.team,
+                                teamLabel: r.teamName,
                                 color: r.team === 'outsider' ? 'cyan' : 'townsfolk',
                               })
                             }
-                            title="Click to show role card in fullscreen"
+                            title="Klicka för att visa rollkortet i helskärm"
                             className="text-[11px] font-bold bg-zinc-950 hover:bg-zinc-900 text-zinc-100 px-2.5 py-1 rounded-lg border border-red-900/60 flex items-center gap-1.5 transition-all shadow-sm active:scale-95"
                           >
                             <span>{r.icon}</span>
@@ -571,21 +571,21 @@ export default function GamesView({
                         onClick={() => {
                           const bluffNames = demonBluffs.map((id) => getRoleInfo(id)?.name || id).join(' • ');
                           onShowToPlayer({
-                            title: 'DEMON BLUFFS',
-                            subtitle: 'These roles are NOT in play',
+                            title: 'DEMONBLUFFAR',
+                            subtitle: 'Dessa roller är INTE i spel',
                             description: bluffNames,
                             color: 'red',
                           });
                         }}
                         className="text-[10px] font-bold text-red-300 hover:text-red-200 hover:underline px-1 py-0.5"
                       >
-                        Show All 3 ➔
+                        Visa alla 3 ➔
                       </button>
                     )}
                   </div>
                 ) : (
                   <p className="text-[11px] text-zinc-400 mt-1.5 pt-1.5 border-t border-zinc-800/80">
-                    No bluffs chosen yet. Tap <strong>Auto-Roll</strong> to pick 3 good characters not in play for the Demon & Spy.
+                    Inga bluffar valda än. Tryck på <strong>Slumpa</strong> för att välja 3 goda karaktärer som inte är i spel, till demonen och spionen.
                   </p>
                 )}
               </div>
@@ -637,10 +637,10 @@ export default function GamesView({
             <div>
               <h2 className="text-base sm:text-lg font-bold text-zinc-100 flex items-center gap-2">
                 <Trophy className="w-4 h-4 text-amber-400" />
-                <span>Past Games Archive</span>
+                <span>Tidigare spel</span>
               </h2>
               <p className="text-xs text-zinc-400">
-                {gameHistory.length} recorded session{gameHistory.length === 1 ? '' : 's'}
+                {gameHistory.length} sparade spel
               </p>
             </div>
 
@@ -651,16 +651,16 @@ export default function GamesView({
                   className="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-750 border border-zinc-700 text-zinc-200 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
                   <Download className="w-3.5 h-3.5" />
-                  <span>Export JSON</span>
+                  <span>Exportera JSON</span>
                 </button>
                 <button
                   onClick={() => {
-                    if (confirm('Clear all game history? This cannot be undone.')) {
+                    if (confirm('Radera all spelhistorik? Det går inte att ångra.')) {
                       onClearHistory();
                     }
                   }}
                   className="text-xs text-zinc-400 hover:text-red-400 p-1.5 transition-colors cursor-pointer"
-                  title="Clear history"
+                  title="Radera historik"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -689,23 +689,23 @@ export default function GamesView({
                           }`}
                         >
                           {game.winner === 'good'
-                            ? 'Good Wins'
+                            ? 'De goda vinner'
                             : game.winner === 'evil'
-                            ? 'Evil Wins'
-                            : 'Draw / Abandoned'}
+                            ? 'De onda vinner'
+                            : 'Oavgjort / avbrutet'}
                         </span>
                       </div>
                       <p className="text-xs text-zinc-400 mt-0.5">
-                        {new Date(game.date).toLocaleDateString()} at{' '}
+                        {new Date(game.date).toLocaleDateString()} kl.{' '}
                         {new Date(game.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} •{' '}
-                        {game.playerCount} players
+                        {game.playerCount} spelare
                       </p>
                     </div>
 
                     <button
                       onClick={() => onDeleteHistoryItem(game.id)}
                       className="text-zinc-500 hover:text-rose-400 p-1 transition-colors cursor-pointer"
-                      title="Delete entry"
+                      title="Radera"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -720,14 +720,14 @@ export default function GamesView({
                   {/* Seat count summary & view snapshot */}
                   <div className="flex items-center justify-between pt-1 border-t border-zinc-800/80 text-xs">
                     <span className="text-zinc-400">
-                      {game.seatsSnapshot?.filter((s) => !s.isDead).length || 0} alive at end
+                      {game.seatsSnapshot?.filter((s) => !s.isDead).length || 0} levande vid slutet
                     </span>
                     <button
                       onClick={() => setViewingSnapshot(game)}
                       className="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-750 text-zinc-200 hover:text-zinc-100 border border-zinc-700 rounded-xl font-medium flex items-center gap-1.5 transition-colors cursor-pointer"
                     >
                       <Eye className="w-3.5 h-3.5 text-zinc-400" />
-                      <span>View Final Table</span>
+                      <span>Visa slutställning</span>
                     </button>
                   </div>
                 </div>
@@ -736,15 +736,15 @@ export default function GamesView({
           ) : (
             <div className="bg-zinc-900/40 border border-zinc-800 rounded-2xl p-8 text-center space-y-3">
               <ScrollText className="w-8 h-8 text-zinc-600 mx-auto" />
-              <p className="text-sm font-semibold text-zinc-300">No finished games yet</p>
+              <p className="text-sm font-semibold text-zinc-300">Inga avslutade spel än</p>
               <p className="text-xs text-zinc-500 max-w-sm mx-auto">
-                When you finish a game in the Live Grimoire, tap "Finish Game" to log the winning team, final table layout, and notes here.
+                När du avslutar ett spel i Pågående grimoire, tryck på "Avsluta spel" för att spara vinnande lag, slutställning och anteckningar här.
               </p>
               <button
                 onClick={() => setSubSection('live')}
                 className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-xs transition-all shadow-md active:scale-95 inline-flex items-center gap-1.5 cursor-pointer"
               >
-                <span>Go to Live Grimoire</span>
+                <span>Gå till pågående grimoire</span>
                 <ArrowRight className="w-3.5 h-3.5 text-zinc-950" />
               </button>
             </div>
@@ -759,7 +759,7 @@ export default function GamesView({
             <div className="flex items-center justify-between">
               <h3 className="text-base font-bold text-zinc-100 flex items-center gap-2">
                 <Flag className="w-4 h-4 text-rose-400" />
-                <span>Finish & Archive Game</span>
+                <span>Avsluta & spara spelet</span>
               </h3>
               <button
                 onClick={() => setShowFinishModal(false)}
@@ -770,12 +770,12 @@ export default function GamesView({
             </div>
 
             <p className="text-xs text-zinc-400">
-              Record this game's outcome and final table state into history.
+              Spara spelets resultat och slutställning i historiken.
             </p>
 
             {/* Winner Selection */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-zinc-300 uppercase">Who won?</label>
+              <label className="text-xs font-bold text-zinc-300 uppercase">Vem vann?</label>
               <div className="grid grid-cols-3 gap-2">
                 <button
                   type="button"
@@ -786,7 +786,7 @@ export default function GamesView({
                       : 'bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-zinc-750'
                   }`}
                 >
-                  Good Wins
+                  De goda vinner
                 </button>
                 <button
                   type="button"
@@ -797,7 +797,7 @@ export default function GamesView({
                       : 'bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-zinc-750'
                   }`}
                 >
-                  Evil Wins
+                  De onda vinner
                 </button>
                 <button
                   type="button"
@@ -808,7 +808,7 @@ export default function GamesView({
                       : 'bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-zinc-750'
                   }`}
                 >
-                  Draw / Other
+                  Oavgjort / annat
                 </button>
               </div>
             </div>
@@ -816,12 +816,12 @@ export default function GamesView({
             {/* Notes Textarea */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-zinc-300 uppercase">
-                Storyteller Notes (Optional)
+                Berättarens anteckningar (valfritt)
               </label>
               <textarea
                 value={finishNotes}
                 onChange={(e) => setFinishNotes(e.target.value)}
-                placeholder="e.g. Slayer shot the Virgin on Day 1. Imp starpassed to Baron on Night 3..."
+                placeholder="t.ex. Dråparen sköt Jungfrun dag 1. Demonen gav över till Baronen natt 3..."
                 rows={3}
                 className="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-3 text-xs text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-amber-400"
               />
@@ -833,14 +833,14 @@ export default function GamesView({
                 onClick={() => setShowFinishModal(false)}
                 className="flex-1 py-2.5 bg-zinc-800 hover:bg-zinc-750 text-zinc-300 font-semibold rounded-xl text-xs border border-zinc-700 transition-colors"
               >
-                Cancel
+                Avbryt
               </button>
               <button
                 type="button"
                 onClick={handleConfirmFinish}
                 className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-xs transition-all shadow-md"
               >
-                Save to History & Finish
+                Spara i historiken & avsluta
               </button>
             </div>
           </div>
@@ -854,12 +854,12 @@ export default function GamesView({
             <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
               <div>
                 <h3 className="text-sm sm:text-base font-bold text-zinc-100 flex items-center gap-2">
-                  <span>Table Snapshot:</span>
+                  <span>Slutställning:</span>
                   <span className="text-amber-400">{viewingSnapshot.scriptName}</span>
                 </h3>
                 <p className="text-[11px] text-zinc-400">
-                  {new Date(viewingSnapshot.date).toLocaleDateString()} • Result:{' '}
-                  <strong className="text-zinc-200 uppercase">{viewingSnapshot.winner}</strong>
+                  {new Date(viewingSnapshot.date).toLocaleDateString()} • Resultat:{' '}
+                  <strong className="text-zinc-200 uppercase">{viewingSnapshot.winner === 'good' ? 'De goda vann' : viewingSnapshot.winner === 'evil' ? 'De onda vann' : 'Oavgjort'}</strong>
                 </p>
               </div>
               <button
@@ -895,9 +895,9 @@ export default function GamesView({
                       </span>
                       <div>
                         <div className="font-semibold flex items-center gap-1.5">
-                          <span>{s.name || `Player ${s.seat}`}</span>
+                          <span>{s.name || `Spelare ${s.seat}`}</span>
                           {s.isDead && (
-                            <span className="text-[10px] text-zinc-500 font-bold">DEAD</span>
+                            <span className="text-[10px] text-zinc-500 font-bold">DÖD</span>
                           )}
                         </div>
                         {roleInfo && (
@@ -906,12 +906,12 @@ export default function GamesView({
                             <span>{roleInfo.name}</span>
                             {s.isDrunk && (
                               <span className="text-[9px] bg-amber-500 text-zinc-950 font-bold px-1 rounded">
-                                DRUNK
+                                FYLLO
                               </span>
                             )}
                             {s.isTraveller && (
                               <span className="text-[9px] bg-purple-500 text-white font-bold px-1 rounded">
-                                TRAVELLER ({s.travellerAlignment})
+                                RESENÄR ({s.travellerAlignment === 'evil' ? 'ond' : 'god'})
                               </span>
                             )}
                           </div>
@@ -928,7 +928,7 @@ export default function GamesView({
                 onClick={() => setViewingSnapshot(null)}
                 className="px-4 py-2 bg-zinc-800 hover:bg-zinc-750 text-zinc-200 font-bold rounded-xl text-xs cursor-pointer"
               >
-                Close Snapshot
+                Stäng
               </button>
             </div>
           </div>
@@ -949,9 +949,9 @@ export default function GamesView({
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-rose-400" />
                 <div>
-                  <h3 className="font-bold text-zinc-100 text-sm">Select 3 Demon Bluffs</h3>
+                  <h3 className="font-bold text-zinc-100 text-sm">Välj 3 demonbluffar</h3>
                   <p className="text-[11px] text-zinc-400">
-                    Good roles from this script NOT in play ({demonBluffs.length}/3 chosen)
+                    Goda roller från skriptet som INTE är i spel ({demonBluffs.length}/3 valda)
                   </p>
                 </div>
               </div>
@@ -959,7 +959,7 @@ export default function GamesView({
                 type="button"
                 onClick={() => setShowBluffsModal(false)}
                 className="text-zinc-400 hover:text-zinc-100 p-1 cursor-pointer"
-                aria-label="Close modal"
+                aria-label="Stäng"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -968,7 +968,7 @@ export default function GamesView({
             <div className="p-4 max-h-[60vh] overflow-y-auto space-y-2">
               {availableGoodRolesForBluffs.length === 0 ? (
                 <div className="text-center py-6 text-xs text-zinc-400">
-                  All good roles from the script are already in the bag!
+                  Alla goda roller i skriptet ligger redan i påsen!
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-2">
@@ -1006,7 +1006,7 @@ export default function GamesView({
                             <Check className="w-3 h-3 text-zinc-950 stroke-[3]" />
                           </span>
                         ) : (
-                          <span className="text-[9px] text-zinc-500 capitalize shrink-0">{r.team}</span>
+                          <span className="text-[9px] text-zinc-500 capitalize shrink-0">{r.teamName}</span>
                         )}
                       </button>
                     );
@@ -1023,7 +1023,7 @@ export default function GamesView({
                   className="px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-750 text-zinc-200 hover:text-zinc-100 font-medium text-xs flex items-center gap-1.5 border border-zinc-700 cursor-pointer"
                 >
                   <Dices className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Auto-Roll 3</span>
+                  <span>Slumpa 3</span>
                 </button>
               )}
               <button
@@ -1031,7 +1031,7 @@ export default function GamesView({
                 onClick={() => setShowBluffsModal(false)}
                 className="ml-auto px-5 py-1.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-xl text-xs transition-colors shadow-sm cursor-pointer"
               >
-                Done
+                Klar
               </button>
             </div>
           </div>

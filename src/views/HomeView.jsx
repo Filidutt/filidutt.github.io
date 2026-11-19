@@ -19,13 +19,13 @@ export default function HomeView({
       <div className="text-center space-y-1.5">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-medium">
           <Sparkles className="w-3.5 h-3.5 text-zinc-400" />
-          <span>Storyteller Pocket Companion</span>
+          <span>Berättarens fickassistent</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-black text-zinc-100 tracking-tight">
           Blood on the Clocktower
         </h1>
         <p className="text-xs sm:text-sm text-zinc-400">
-          Fast, offline grimoire for physical games. Assist, never enforce.
+          Snabb grimoire för spel runt bordet som fungerar offline. Hjälper till, tvingar aldrig.
         </p>
       </div>
 
@@ -40,7 +40,7 @@ export default function HomeView({
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
               </span>
               <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
-                Live Game in Progress
+                Pågående spel
               </span>
             </div>
             <span className="text-[11px] font-medium bg-zinc-800 text-zinc-300 px-2.5 py-0.5 rounded-full border border-zinc-700">
@@ -51,15 +51,15 @@ export default function HomeView({
           <div className="grid grid-cols-3 gap-2 py-2 mb-4 bg-zinc-950/70 rounded-xl p-3 border border-zinc-800/80 text-center">
             <div>
               <div className="text-lg font-black text-zinc-100">{seats.length}</div>
-              <div className="text-[10px] text-zinc-400 uppercase font-semibold">Players</div>
+              <div className="text-[10px] text-zinc-400 uppercase font-semibold">Spelare</div>
             </div>
             <div>
               <div className="text-lg font-black text-emerald-400">{aliveCount}</div>
-              <div className="text-[10px] text-zinc-400 uppercase font-semibold">Alive</div>
+              <div className="text-[10px] text-zinc-400 uppercase font-semibold">Levande</div>
             </div>
             <div>
               <div className="text-lg font-black text-purple-400">{travellersCount}</div>
-              <div className="text-[10px] text-zinc-400 uppercase font-semibold">Travellers</div>
+              <div className="text-[10px] text-zinc-400 uppercase font-semibold">Resenärer</div>
             </div>
           </div>
 
@@ -68,7 +68,7 @@ export default function HomeView({
               onClick={() => onNavigate('games', 'table')}
               className="w-full sm:flex-1 py-3 px-4 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-sm transition-all shadow-md flex items-center justify-center gap-2 active:scale-98"
             >
-              <span>Resume Grimoire Table</span>
+              <span>Fortsätt vid bordet</span>
               <Play className="w-4 h-4 fill-current text-zinc-950" />
             </button>
             <button
@@ -76,7 +76,7 @@ export default function HomeView({
               className="w-full sm:w-auto py-3 px-4 bg-zinc-800 hover:bg-zinc-750 text-zinc-200 font-semibold rounded-xl text-xs transition-colors border border-zinc-700 flex items-center justify-center gap-1.5"
             >
               <Moon className="w-4 h-4 text-zinc-400" />
-              <span>Prompts</span>
+              <span>Kort</span>
             </button>
           </div>
         </div>
@@ -86,9 +86,9 @@ export default function HomeView({
             <Dices className="w-6 h-6 text-zinc-300" />
           </div>
           <div>
-            <h2 className="text-base font-bold text-zinc-100">Ready for Tonight's Game?</h2>
+            <h2 className="text-base font-bold text-zinc-100">Redo för kvällens spel?</h2>
             <p className="text-xs text-zinc-400 max-w-sm mx-auto mt-1">
-              Select player count, set up the physical tokens in the bag, and run the circle seamlessly.
+              Välj antal spelare, lägg de fysiska poletterna i påsen och led spelet smidigt runt bordet.
             </p>
           </div>
           <button
@@ -96,7 +96,7 @@ export default function HomeView({
             className="w-full sm:w-auto px-6 py-3 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-sm transition-all shadow-md inline-flex items-center justify-center gap-2 active:scale-98"
           >
             <Plus className="w-4 h-4 text-zinc-950" />
-            <span>Start New Game</span>
+            <span>Starta nytt spel</span>
           </button>
         </div>
       )}
@@ -113,8 +113,8 @@ export default function HomeView({
                 <BookOpen className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-xs font-bold text-zinc-200 group-hover:text-zinc-100">Compendium</h3>
-                <p className="text-[11px] text-zinc-500">Character registry</p>
+                <h3 className="text-xs font-bold text-zinc-200 group-hover:text-zinc-100">Kompendium</h3>
+                <p className="text-[11px] text-zinc-500">Alla karaktärer</p>
               </div>
             </div>
             <ArrowRight className="w-3.5 h-3.5 text-zinc-600 group-hover:text-zinc-400" />
@@ -129,8 +129,8 @@ export default function HomeView({
                 <ScrollText className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-xs font-bold text-zinc-200 group-hover:text-zinc-100">Scripts</h3>
-                <p className="text-[11px] text-zinc-500">Editions & Builder</p>
+                <h3 className="text-xs font-bold text-zinc-200 group-hover:text-zinc-100">Skript</h3>
+                <p className="text-[11px] text-zinc-500">Utgåvor & skriptbyggare</p>
               </div>
             </div>
             <ArrowRight className="w-3.5 h-3.5 text-zinc-600 group-hover:text-zinc-400" />
@@ -144,13 +144,13 @@ export default function HomeView({
           <div className="flex items-center justify-between px-1">
             <h2 className="text-xs font-bold text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
               <History className="w-3.5 h-3.5" />
-              <span>Recent Games</span>
+              <span>Senaste spelen</span>
             </h2>
             <button
               onClick={() => onNavigate('games', 'history')}
               className="text-xs text-zinc-400 hover:text-zinc-200 font-medium"
             >
-              See all ({gameHistory.length})
+              Visa alla ({gameHistory.length})
             </button>
           </div>
           <div className="space-y-2">
@@ -172,11 +172,11 @@ export default function HomeView({
                           : 'bg-zinc-800 text-zinc-400 border border-zinc-700'
                       }`}
                     >
-                      {g.winner === 'good' ? 'Good Won' : g.winner === 'evil' ? 'Evil Won' : 'Draw'}
+                      {g.winner === 'good' ? 'De goda vann' : g.winner === 'evil' ? 'De onda vann' : 'Oavgjort'}
                     </span>
                   </div>
                   <div className="text-[11px] text-zinc-400">
-                    {new Date(g.date).toLocaleDateString()} • {g.playerCount} players
+                    {new Date(g.date).toLocaleDateString()} • {g.playerCount} spelare
                     {g.notes ? ` • "${g.notes.slice(0, 30)}..."` : ''}
                   </div>
                 </div>
@@ -191,9 +191,9 @@ export default function HomeView({
       <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-4 flex items-center gap-3 text-xs text-zinc-400">
         <WifiOff className="w-5 h-5 text-zinc-500 shrink-0" />
         <div>
-          <span className="font-semibold text-zinc-300">100% Offline PWA & Zero Accounts: </span>
+          <span className="font-semibold text-zinc-300">Helt offline, inga konton: </span>
           <span>
-            All your scripts, grimoires, and game histories are stored privately on your device. Works completely offline.
+            Alla dina skript, grimoirer och spelhistorik sparas privat på din enhet. Fungerar helt utan nätverk.
           </span>
         </div>
       </div>

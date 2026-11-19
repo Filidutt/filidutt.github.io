@@ -40,7 +40,7 @@ export default function ScriptSelectorModal({
     e.preventDefault();
     setErrorMessage('');
     if (!pastedJson.trim()) {
-      setErrorMessage('Please paste script JSON first.');
+      setErrorMessage('Klistra in skript-JSON först.');
       return;
     }
 
@@ -67,9 +67,9 @@ export default function ScriptSelectorModal({
           <div className="flex items-center gap-2">
             <span className="text-xl">📜</span>
             <div>
-              <h2 className="text-sm font-bold text-zinc-100">Select Script / Edition</h2>
+              <h2 className="text-sm font-bold text-zinc-100">Välj skript / utgåva</h2>
               <p className="text-[11px] text-zinc-400">
-                Current: <b className="text-amber-300">{currentScriptName}</b>
+                Nuvarande: <b className="text-amber-300">{currentScriptName}</b>
               </p>
             </div>
           </div>
@@ -94,7 +94,7 @@ export default function ScriptSelectorModal({
                 : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
-            Official Editions (3)
+            Officiella utgåvor (3)
           </button>
           <button
             onClick={() => {
@@ -107,7 +107,7 @@ export default function ScriptSelectorModal({
                 : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
-            Custom Script (JSON)
+            Eget skript (JSON)
           </button>
         </div>
 
@@ -151,15 +151,15 @@ export default function ScriptSelectorModal({
                     <div className="flex items-center gap-2">
                       <span className="text-base font-bold text-zinc-100">{preset.name}</span>
                       <span className="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-400">
-                        {preset.roles.length} roles
+                        {preset.roles.length} roller
                       </span>
                     </div>
                     {isCurrent ? (
                       <span className="text-xs font-bold text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded-md border border-amber-500/40">
-                        ✓ In Play
+                        ✓ Spelas
                       </span>
                     ) : (
-                      <span className={`text-xs font-semibold ${headerBg}`}>Select ➔</span>
+                      <span className={`text-xs font-semibold ${headerBg}`}>Välj ➔</span>
                     )}
                   </div>
                   <p className="text-xs text-zinc-400 mt-1.5 leading-snug">{preset.description}</p>
@@ -175,14 +175,14 @@ export default function ScriptSelectorModal({
             {/* File Upload Option */}
             <div className="p-3.5 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
               <span className="text-xs font-bold text-zinc-300 block">
-                Option 1: Upload Script JSON file
+                Alternativ 1: Ladda upp en skript-JSON-fil
               </span>
               <p className="text-[11px] text-zinc-400">
-                Compatible with official botc.app, script generator, and bloodontheclocktower.com exports.
+                Fungerar med exporter från botc.app, skriptverktyget och bloodontheclocktower.com.
               </p>
               <label className="inline-flex items-center justify-center gap-2 cursor-pointer bg-zinc-800 hover:bg-zinc-750 text-xs font-bold text-zinc-100 px-4 py-2.5 rounded-xl border border-zinc-700 transition-colors w-full">
                 <span>📁</span>
-                <span>Choose .json File</span>
+                <span>Välj .json-fil</span>
                 <input
                   type="file"
                   accept=".json,application/json"
@@ -195,13 +195,13 @@ export default function ScriptSelectorModal({
             {/* Paste JSON Option */}
             <form onSubmit={handlePasteSubmit} className="p-3.5 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
               <span className="text-xs font-bold text-zinc-300 block">
-                Option 2: Paste Script JSON text
+                Alternativ 2: Klistra in skript-JSON
               </span>
               <textarea
                 rows={4}
                 value={pastedJson}
                 onChange={(e) => setPastedJson(e.target.value)}
-                placeholder='[{"id":"_meta","name":"My Script"}, "washerwoman", "monk", ...]'
+                placeholder='[{"id":"_meta","name":"Mitt skript"}, "washerwoman", "monk", ...]'
                 className="w-full bg-zinc-900 border border-zinc-750 rounded-xl p-2.5 text-xs text-zinc-100 font-mono placeholder-zinc-600 focus:outline-none focus:border-amber-400"
               />
               <button
@@ -209,7 +209,7 @@ export default function ScriptSelectorModal({
                 disabled={!pastedJson.trim()}
                 className="w-full py-2 bg-amber-500 hover:bg-amber-400 disabled:opacity-40 text-zinc-950 font-bold text-xs rounded-xl shadow transition-colors"
               >
-                Load Pasted Script
+                Läs in inklistrat skript
               </button>
             </form>
           </div>

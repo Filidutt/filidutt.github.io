@@ -18,7 +18,7 @@ export function BigTextModal({ message, onClose }) {
     >
       {/* Top Bar with dismiss cue */}
       <div className="w-full flex items-center justify-between text-zinc-400 text-xs sm:text-sm font-semibold max-w-2xl mx-auto">
-        <span className="opacity-75">Tap anywhere to close</span>
+        <span className="opacity-75">Tryck var som helst för att stänga</span>
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -84,7 +84,7 @@ export default function MessagesView({
 
   // Role Token in Big Text
   const [selectedRoleToken, setSelectedRoleToken] = useState('');
-  const [roleCustomAction, setRoleCustomAction] = useState('You learn this character');
+  const [roleCustomAction, setRoleCustomAction] = useState('Du får veta den här karaktären');
 
   // Active Fullscreen Big Text modal
   const [activeBigText, setActiveBigText] = useState(null);
@@ -152,7 +152,7 @@ export default function MessagesView({
           : roleObj.team === 'traveller'
           ? 'purple'
           : 'blue',
-      subtext: roleCustomAction ? `${roleCustomAction} (${roleObj.editionLabel || 'Official'})` : '',
+      subtext: roleCustomAction ? `${roleCustomAction} (${roleObj.editionLabel || 'Officiell'})` : '',
     });
   };
 
@@ -167,7 +167,7 @@ export default function MessagesView({
       text: newMsgText.trim(),
       icon: newMsgIcon || '💬',
       color: newMsgColor,
-      description: newMsgDesc.trim() || 'Custom Storyteller Message',
+      description: newMsgDesc.trim() || 'Eget meddelande från berättaren',
     };
 
     onCreateCustomMessage(newMsg);
@@ -189,10 +189,10 @@ export default function MessagesView({
         <div>
           <h1 className="text-xl sm:text-2xl font-black text-zinc-100 flex items-center gap-2">
             <span>💬</span>
-            <span>Messages & Big Text</span>
+            <span>Meddelanden & stor text</span>
           </h1>
           <p className="text-xs text-zinc-400 mt-0.5">
-            Silent, high-contrast communicator for dark rooms & distant players.
+            Tyst kommunikation med hög kontrast för mörka rum och spelare långt bort.
           </p>
         </div>
         <button
@@ -200,7 +200,7 @@ export default function MessagesView({
           className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-xs transition-all shadow-md flex items-center gap-1 active:scale-95"
         >
           <span>+</span>
-          <span>New Message</span>
+          <span>Nytt meddelande</span>
         </button>
       </div>
 
@@ -210,10 +210,10 @@ export default function MessagesView({
           <div className="flex items-center gap-2">
             <span className="text-base">✍️</span>
             <h2 className="text-xs font-bold text-zinc-200 uppercase tracking-wider">
-              Free Text Big Text
+              Fritext i stor text
             </h2>
           </div>
-          <span className="text-[11px] text-zinc-400">Type & show across the room</span>
+          <span className="text-[11px] text-zinc-400">Skriv och visa över hela rummet</span>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-2">
@@ -222,7 +222,7 @@ export default function MessagesView({
             value={freeText}
             onChange={(e) => setFreeText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleShowFreeText()}
-            placeholder="Type any message (e.g. You are executed, Do you use your Slayer shot?)..."
+            placeholder="Skriv valfritt meddelande (t.ex. Du är avrättad, Använder du ditt dråparskott?)..."
             className="flex-1 bg-zinc-950 border border-zinc-700/80 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-amber-400"
           />
 
@@ -232,7 +232,7 @@ export default function MessagesView({
               type="text"
               value={freeTextIcon}
               onChange={(e) => setFreeTextIcon(e.target.value)}
-              title="Custom emoji icon for Big Text"
+              title="Egen emoji till stora texten"
               className="w-10 bg-zinc-800 border border-zinc-700 rounded-xl py-2 text-center text-sm focus:outline-none"
             />
 
@@ -242,12 +242,12 @@ export default function MessagesView({
               onChange={(e) => setFreeTextColor(e.target.value)}
               className="bg-zinc-800 border border-zinc-700 rounded-xl px-2.5 py-2 text-xs text-zinc-200 focus:outline-none"
             >
-              <option value="amber">Amber 🟡</option>
-              <option value="green">Green 🟢</option>
-              <option value="red">Red 🔴</option>
-              <option value="blue">Blue 🔵</option>
-              <option value="purple">Purple 🟣</option>
-              <option value="zinc">White ⚪</option>
+              <option value="amber">Bärnsten 🟡</option>
+              <option value="green">Grön 🟢</option>
+              <option value="red">Röd 🔴</option>
+              <option value="blue">Blå 🔵</option>
+              <option value="purple">Lila 🟣</option>
+              <option value="zinc">Vit ⚪</option>
             </select>
 
             <button
@@ -255,7 +255,7 @@ export default function MessagesView({
               disabled={!freeText.trim()}
               className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 text-xs font-bold rounded-xl transition-all disabled:opacity-50 shadow-md shrink-0 flex items-center gap-1.5 active:scale-95"
             >
-              <span>Show Big Text</span>
+              <span>Visa stor text</span>
               <span>👁️</span>
             </button>
           </div>
@@ -268,10 +268,10 @@ export default function MessagesView({
           <div className="flex items-center gap-2">
             <span className="text-base">🃏</span>
             <h2 className="text-xs font-bold text-zinc-200 uppercase tracking-wider">
-              Show Character Token
+              Visa karaktärspolett
             </h2>
           </div>
-          <span className="text-[11px] text-zinc-400">Giant icon & role name</span>
+          <span className="text-[11px] text-zinc-400">Stor ikon & rollnamn</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -281,10 +281,10 @@ export default function MessagesView({
             onChange={(e) => setSelectedRoleToken(e.target.value)}
             className="sm:col-span-1 bg-zinc-950 border border-zinc-700/80 rounded-xl px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-amber-400"
           >
-            <option value="">-- Choose Character --</option>
+            <option value="">-- Välj karaktär --</option>
             {allRoles.map((r) => (
               <option key={r.id} value={r.id}>
-                {r.icon} {r.name} ({r.team})
+                {r.icon} {r.name} ({r.teamName})
               </option>
             ))}
           </select>
@@ -294,7 +294,7 @@ export default function MessagesView({
             type="text"
             value={roleCustomAction}
             onChange={(e) => setRoleCustomAction(e.target.value)}
-            placeholder="Instruction (e.g. You learn this character)"
+            placeholder="Instruktion (t.ex. Du får veta den här karaktären)"
             className="sm:col-span-1 bg-zinc-950 border border-zinc-700/80 rounded-xl px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-amber-400"
           />
 
@@ -303,7 +303,7 @@ export default function MessagesView({
             disabled={!selectedRoleToken}
             className="px-4 py-2 bg-zinc-800 hover:bg-zinc-750 text-amber-300 hover:text-amber-200 border border-zinc-700 rounded-xl text-xs font-bold transition-all disabled:opacity-40 flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
           >
-            <span>Show Role Token</span>
+            <span>Visa rollpolett</span>
             <span>👁️</span>
           </button>
         </div>
@@ -316,7 +316,7 @@ export default function MessagesView({
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search cues & prompts (e.g. yes, choose, poison, wake)..."
+          placeholder="Sök signaler & uppmaningar (t.ex. ja, välj, förgiftad, vakna)..."
           className="w-full bg-zinc-900 border border-zinc-700/80 rounded-2xl pl-10 pr-9 py-2 text-xs sm:text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-amber-400 transition-colors"
         />
         {searchQuery && (
@@ -333,10 +333,10 @@ export default function MessagesView({
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
           <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
-            Categories & Favourites
+            Kategorier & favoriter
           </span>
           <span className="text-[11px] text-zinc-400">
-            {favoriteMessageIds.length} Starred ⭐
+            {favoriteMessageIds.length} Stjärnmärkta ⭐
           </span>
         </div>
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
@@ -380,7 +380,7 @@ export default function MessagesView({
                     e.stopPropagation();
                     onToggleFavorite(msg.id);
                   }}
-                  title={isFav ? 'Remove from Favourites' : 'Add to Favourites'}
+                  title={isFav ? 'Ta bort från favoriter' : 'Lägg till i favoriter'}
                   className={`absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center text-sm transition-all ${
                     isFav
                       ? 'text-amber-400 bg-amber-950/80 border border-amber-500/50'
@@ -396,11 +396,11 @@ export default function MessagesView({
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (confirm(`Delete custom message "${msg.text}"?`)) {
+                      if (confirm(`Radera eget meddelande "${msg.text}"?`)) {
                         onDeleteCustomMessage(msg.id);
                       }
                     }}
-                    title="Delete message"
+                    title="Radera meddelande"
                     className="absolute top-2 left-2 text-zinc-500 hover:text-red-400 text-xs w-6 h-6 flex items-center justify-center"
                   >
                     ✕
@@ -418,7 +418,7 @@ export default function MessagesView({
 
                 <div className="pt-2 text-center">
                   <span className="text-[10px] text-zinc-400 font-medium line-clamp-1">
-                    {msg.description || 'Tap to show'}
+                    {msg.description || 'Tryck för att visa'}
                   </span>
                 </div>
               </div>
@@ -429,19 +429,19 @@ export default function MessagesView({
         <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 text-center space-y-2">
           <div className="text-3xl">⭐</div>
           <p className="text-sm font-semibold text-zinc-300">
-            {activeCategory === 'favorites' ? 'No Favourites Starred Yet' : 'No Messages Found'}
+            {activeCategory === 'favorites' ? 'Inga favoriter än' : 'Inga meddelanden hittades'}
           </p>
           <p className="text-xs text-zinc-500 max-w-sm mx-auto">
             {activeCategory === 'favorites'
-              ? 'Star (★) your most frequent communication cues above to have them right at your fingertips during night phases.'
-              : 'Try selecting a different category or create a new message.'}
+              ? 'Stjärnmärk (★) de signaler du använder mest, så har du dem nära till hands under natten.'
+              : 'Välj en annan kategori eller skapa ett nytt meddelande.'}
           </p>
           {activeCategory === 'favorites' && (
             <button
               onClick={() => setActiveCategory('all')}
               className="mt-2 px-4 py-2 bg-amber-500 text-zinc-950 font-bold rounded-xl text-xs"
             >
-              Browse All Messages ➔
+              Visa alla meddelanden ➔
             </button>
           )}
         </div>
@@ -457,7 +457,7 @@ export default function MessagesView({
             <div className="flex items-center justify-between">
               <h3 className="text-base font-bold text-zinc-100 flex items-center gap-2">
                 <span>✍️</span>
-                <span>Create Custom Message</span>
+                <span>Skapa eget meddelande</span>
               </h3>
               <button
                 type="button"
@@ -471,14 +471,14 @@ export default function MessagesView({
             {/* Message Text */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-zinc-300 uppercase">
-                Message Text (Big Text)
+                Meddelandetext (stor text)
               </label>
               <input
                 type="text"
                 required
                 value={newMsgText}
                 onChange={(e) => setNewMsgText(e.target.value)}
-                placeholder="e.g. You are the Fang Gu now!"
+                placeholder="t.ex. Du är Fang Gu nu!"
                 className="w-full bg-zinc-950 border border-zinc-700/80 rounded-xl px-3 py-2 text-xs sm:text-sm text-zinc-100 focus:outline-none focus:border-amber-400"
               />
             </div>
@@ -486,7 +486,7 @@ export default function MessagesView({
             {/* Icon & Color */}
             <div className="grid grid-cols-2 gap-2">
               <div className="space-y-1">
-                <label className="text-xs font-bold text-zinc-300 uppercase">Emoji Icon</label>
+                <label className="text-xs font-bold text-zinc-300 uppercase">Emoji</label>
                 <input
                   type="text"
                   value={newMsgIcon}
@@ -497,18 +497,18 @@ export default function MessagesView({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-zinc-300 uppercase">Color Theme</label>
+                <label className="text-xs font-bold text-zinc-300 uppercase">Färg</label>
                 <select
                   value={newMsgColor}
                   onChange={(e) => setNewMsgColor(e.target.value)}
                   className="w-full bg-zinc-950 border border-zinc-700/80 rounded-xl px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-amber-400"
                 >
-                  <option value="amber">Amber 🟡</option>
-                  <option value="green">Green 🟢</option>
-                  <option value="red">Red 🔴</option>
-                  <option value="blue">Blue 🔵</option>
-                  <option value="purple">Purple 🟣</option>
-                  <option value="pink">Pink 🌸</option>
+                  <option value="amber">Bärnsten 🟡</option>
+                  <option value="green">Grön 🟢</option>
+                  <option value="red">Röd 🔴</option>
+                  <option value="blue">Blå 🔵</option>
+                  <option value="purple">Lila 🟣</option>
+                  <option value="pink">Rosa 🌸</option>
                   <option value="zinc">Neutral ⚪</option>
                 </select>
               </div>
@@ -517,13 +517,13 @@ export default function MessagesView({
             {/* Optional Description */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-zinc-300 uppercase">
-                Subtitle / Description (Optional)
+                Underrubrik / beskrivning (valfritt)
               </label>
               <input
                 type="text"
                 value={newMsgDesc}
                 onChange={(e) => setNewMsgDesc(e.target.value)}
-                placeholder="e.g. Show when Fang Gu jumps to an Outsider"
+                placeholder="t.ex. Visa när Fang Gu hoppar till en utböling"
                 className="w-full bg-zinc-950 border border-zinc-700/80 rounded-xl px-3 py-2 text-xs text-zinc-100 focus:outline-none focus:border-amber-400"
               />
             </div>
@@ -534,13 +534,13 @@ export default function MessagesView({
                 onClick={() => setShowCreateModal(false)}
                 className="flex-1 py-2.5 bg-zinc-800 hover:bg-zinc-750 text-zinc-300 font-semibold rounded-xl text-xs border border-zinc-700"
               >
-                Cancel
+                Avbryt
               </button>
               <button
                 type="submit"
                 className="flex-1 py-2.5 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl text-xs transition-all shadow-md"
               >
-                Save & Add to Favourites ⭐
+                Spara & lägg till i favoriter ⭐
               </button>
             </div>
           </form>
